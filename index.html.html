@@ -1,0 +1,2207 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Andri Andriansyah | Syariah Concept — Proteksi & Perencanaan Keuangan Syariah</title>
+  
+  <!-- Google Fonts: Plus Jakarta Sans & Playfair Display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome untuk Ikon Profesional -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Tone.js untuk Musik Latar Belakang Video Animasi Ringan -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['"Playfair Display"', 'serif'],
+          },
+          colors: {
+            syariah: {
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              200: '#a7f3d0',
+              300: '#6ee7b7',
+              400: '#34d399',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+              800: '#065f46',
+              900: '#064e3b',
+              950: '#022c22',
+            },
+            gold: {
+              300: '#fcd34d',
+              400: '#fbbf24',
+              500: '#f59e0b',
+              600: '#d97706',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Pola Geometris Islami Halus (SVG Background Pattern) */
+    .islamic-pattern {
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg stroke='%2310b981' stroke-opacity='0.12' stroke-width='1'%3E%3Cpath d='M30 0l8.66 15H21.34L30 0zm0 60l8.66-15H21.34L30 60zM0 30l15-8.66v17.32L0 30zm60 0l-15-8.66v17.32L60 30zM30 10l14.14 5.86L50 30l-5.86 14.14L30 50l-14.14-5.86L10 30l5.86-14.14L30 10z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .islamic-pattern-light {
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg stroke='%23059669' stroke-opacity='0.06' stroke-width='1'%3E%3Cpath d='M30 0l8.66 15H21.34L30 0zm0 60l8.66-15H21.34L30 60zM0 30l15-8.66v17.32L0 30zm60 0l-15-8.66v17.32L60 30zM30 10l14.14 5.86L50 30l-5.86 14.14L30 50l-14.14-5.86L10 30l5.86-14.14L30 10z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    /* Animasi Keyframes Utama */
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.45); }
+      50% { box-shadow: 0 0 0 14px rgba(16, 185, 129, 0); }
+    }
+
+    @keyframes spinSlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-float {
+      animation: floatSlow 4.5s ease-in-out infinite;
+    }
+
+    .animate-pulse-glow {
+      animation: pulseGlow 2.4s infinite;
+    }
+
+    .animate-spin-slow {
+      animation: spinSlow 45s linear infinite;
+    }
+
+    .splash-fade-in {
+      animation: fadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .splash-delay-1 { animation-delay: 0.2s; opacity: 0; }
+    .splash-delay-2 { animation-delay: 0.5s; opacity: 0; }
+    .splash-delay-3 { animation-delay: 0.8s; opacity: 0; }
+
+    /* Scroll Reveal Class */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: all 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Custom Range Slider */
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      background: #d1fae5;
+      height: 8px;
+      border-radius: 999px;
+      outline: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #047857;
+      border: 3px solid #ffffff;
+      box-shadow: 0 2px 6px rgba(4, 120, 87, 0.4);
+      cursor: pointer;
+      transition: transform 0.15s ease, background-color 0.15s ease;
+    }
+
+    input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.15);
+      background: #065f46;
+    }
+
+    /* Transisi Splash Overlay */
+    #opening-splash {
+      transition: transform 0.85s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.7s ease;
+    }
+
+    #opening-splash.hide-splash {
+      transform: translateY(-100%);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* Running Text Ticker & Animasi Pemutar Video Edukasi */
+    @keyframes tickerScroll {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .video-ticker-track {
+      display: flex;
+      width: max-content;
+      white-space: nowrap;
+      animation: tickerScroll 18s linear infinite;
+    }
+
+    .group:hover .video-ticker-track {
+      animation-play-state: paused;
+    }
+
+    @keyframes audioBarBounce {
+      0%, 100% { transform: scaleY(0.28); opacity: 0.6; }
+      50% { transform: scaleY(1); opacity: 1; }
+    }
+
+    .audio-wave-bar {
+      transform-origin: bottom;
+      animation: audioBarBounce 0.75s ease-in-out infinite;
+    }
+
+    .audio-wave-paused .audio-wave-bar {
+      animation-play-state: paused;
+      transform: scaleY(0.25);
+      opacity: 0.35;
+    }
+
+    @keyframes slideEnter {
+      0% { opacity: 0; transform: translateY(18px) scale(0.97); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .story-slide-enter {
+      animation: slideEnter 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes playPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.55); }
+      50% { box-shadow: 0 0 0 14px rgba(251, 191, 36, 0); }
+    }
+
+    .btn-play-pulse {
+      animation: playPulse 2.2s infinite;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased overflow-x-hidden selection:bg-syariah-600 selection:text-white">
+
+  <!-- ===================================================================== -->
+  <!-- 1. OPENING QUOTES OVERLAY (SPLASH SCREEN BERANIMASI)                  -->
+  <!-- ===================================================================== -->
+  <div id="opening-splash" class="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-syariah-950 via-syariah-900 to-teal-950 islamic-pattern px-5 py-8 overflow-y-auto">
+    <div class="pointer-events-none absolute inset-0 overflow-hidden">
+      <div class="absolute -top-24 -left-24 w-80 h-80 rounded-full bg-syariah-500/15 blur-3xl"></div>
+      <div class="absolute -bottom-24 -right-24 w-96 h-96 rounded-full bg-gold-500/15 blur-3xl"></div>
+      <div class="hidden sm:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[540px] h-[540px] border border-syariah-400/10 rounded-full animate-spin-slow"></div>
+      <div class="hidden sm:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] border border-gold-400/10 rounded-full"></div>
+    </div>
+
+    <div class="relative z-10 max-w-3xl mx-auto text-center">
+      <!-- Badge Pembuka -->
+      <div class="splash-fade-in inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-syariah-400/30 text-syariah-200 text-xs sm:text-sm font-medium tracking-wide mb-7 backdrop-blur-sm">
+        <i class="fa-solid fa-moon text-gold-400"></i>
+        <span>SYARIAH CONCEPT • PROTEKSI &amp; PERENCANAAN KEUANGAN</span>
+      </div>
+
+      <!-- Ikon Kutipan -->
+      <div class="splash-fade-in splash-delay-1 mb-4">
+        <span class="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gold-500/20 border border-gold-400/40 text-gold-400 text-xl">
+          <i class="fa-solid fa-quote-left"></i>
+        </span>
+      </div>
+
+      <!-- Kutipan Utama -->
+      <blockquote class="splash-fade-in splash-delay-1 font-serif italic text-2xl sm:text-4xl md:text-[42px] text-white leading-snug sm:leading-tight font-semibold tracking-tight mb-7 px-2">
+        “Kita tidak pernah bisa memilih kapan resiko datang, tapi kita <span class="text-gold-400 underline decoration-gold-400/40 underline-offset-8">selalu</span> bisa memilih seberapa siap kita menghadapinya”
+      </blockquote>
+
+      <!-- Garis Pemisah Emas -->
+      <div class="splash-fade-in splash-delay-2 flex items-center justify-center gap-3 mb-6">
+        <span class="h-px w-12 bg-gradient-to-r from-transparent to-gold-400"></span>
+        <i class="fa-solid fa-star-and-crescent text-gold-400 text-sm"></i>
+        <span class="h-px w-12 bg-gradient-to-l from-transparent to-gold-400"></span>
+      </div>
+
+      <!-- Identitas Penulis Kutipan -->
+      <div class="splash-fade-in splash-delay-2 mb-9">
+        <p class="text-lg sm:text-xl font-bold text-white tracking-wide">Andri Andriansyah</p>
+        <p class="text-sm sm:text-base text-syariah-300 font-medium">Syariah Financial &amp; Protection Advisor</p>
+      </div>
+
+      <!-- Tombol Masuk ke Landing Page -->
+      <div class="splash-fade-in splash-delay-3 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <button id="enter-site-btn" type="button" class="group relative inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-syariah-500 to-syariah-600 hover:from-syariah-400 hover:to-syariah-500 text-white font-bold text-base sm:text-lg shadow-xl shadow-syariah-950/60 transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer">
+          <span>Masuk ke Halaman Utama</span>
+          <i class="fa-solid fa-arrow-right transition-transform duration-300 group-hover:translate-x-1.5"></i>
+        </button>
+      </div>
+
+      <p class="splash-fade-in splash-delay-3 mt-5 text-xs text-syariah-300/70">
+        Klik tombol di atas untuk melihat profil, 3 video edukasi, kalkulator syariah, dan bukti klaim nasabah
+      </p>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- 2. NAVBAR STICKY                                                      -->
+  <!-- ===================================================================== -->
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-syariah-100 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        <!-- Brand Logo -->
+        <a href="#beranda" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-syariah-700 to-syariah-900 flex items-center justify-center text-white shadow-md shadow-syariah-700/20 group-hover:scale-105 transition-transform">
+            <i class="fa-solid fa-shield-halved text-lg text-gold-400"></i>
+          </div>
+          <div>
+            <span class="block font-extrabold text-syariah-900 text-base sm:text-lg leading-none">Andri Andriansyah</span>
+            <span class="block text-[11px] sm:text-xs font-semibold text-syariah-600 tracking-wider uppercase mt-0.5">Syariah Concept</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center gap-6 text-sm font-semibold text-slate-600">
+          <a href="#beranda" class="hover:text-syariah-700 transition-colors">Beranda</a>
+          <a href="#syariah-concept" class="hover:text-syariah-700 transition-colors">Syariah Concept</a>
+          <a href="#video-edukasi" class="hover:text-syariah-700 transition-colors">3 Video Edukasi</a>
+          <a href="#kalkulator" class="hover:text-syariah-700 transition-colors">3 Kalkulator</a>
+          <a href="#testimoni" class="hover:text-syariah-700 transition-colors">Bukti Klaim</a>
+          <a href="#kontak" class="hover:text-syariah-700 transition-colors">Kontak</a>
+        </nav>
+
+        <!-- Action Buttons -->
+        <div class="flex items-center gap-2 sm:gap-3">
+          <button id="reopen-quote-btn" type="button" title="Lihat Kutipan Pembuka" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-syariah-700 bg-syariah-50 hover:bg-syariah-100 border border-syariah-200 transition-colors cursor-pointer">
+            <i class="fa-solid fa-quote-left text-gold-600"></i>
+            <span>Quotes</span>
+          </button>
+          <a href="https://wa.me/628112201321?text=Assalamu'alaikum%20Pak%20Andri%20Andriansyah,%20saya%20tertarik%20konsultasi%20mengenai%20program%20proteksi%20%26%20keuangan%20Syariah%20Concept." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-syariah-700 hover:bg-syariah-800 text-white text-xs sm:text-sm font-bold shadow-md shadow-syariah-700/20 transition-all">
+            <i class="fa-brands fa-whatsapp text-base sm:text-lg"></i>
+            <span>Chat WA</span>
+          </a>
+          <!-- Mobile Menu Button -->
+          <button id="mobile-menu-btn" type="button" aria-label="Buka Menu" class="md:hidden p-2.5 rounded-xl text-syariah-800 hover:bg-syariah-50">
+            <i class="fa-solid fa-bars text-xl"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-syariah-100 px-4 pt-3 pb-5 space-y-2 shadow-lg">
+      <a href="#beranda" class="mobile-nav-link block px-3 py-2.5 rounded-xl font-semibold text-slate-700 hover:bg-syariah-50 hover:text-syariah-700">Beranda</a>
+      <a href="#syariah-concept" class="mobile-nav-link block px-3 py-2.5 rounded-xl font-semibold text-slate-700 hover:bg-syariah-50 hover:text-syariah-700">Profil Syariah Concept</a>
+      <a href="#video-edukasi" class="mobile-nav-link block px-3 py-2.5 rounded-xl font-semibold text-slate-700 hover:bg-syariah-50 hover:text-syariah-700">3 Video Edukasi</a>
+      <a href="#kalkulator" class="mobile-nav-link block px-3 py-2.5 rounded-xl font-semibold text-slate-700 hover:bg-syariah-50 hover:text-syariah-700">3 Kalkulator &amp; Rekomendasi</a>
+      <a href="#testimoni" class="mobile-nav-link block px-3 py-2.5 rounded-xl font-semibold text-slate-700 hover:bg-syariah-50 hover:text-syariah-700">6 Testimoni Klaim</a>
+      <a href="#kontak" class="mobile-nav-link block px-3 py-2.5 rounded-xl font-semibold text-slate-700 hover:bg-syariah-50 hover:text-syariah-700">Kontak &amp; Konsultasi</a>
+    </div>
+  </header>
+
+  <!-- ===================================================================== -->
+  <!-- 3. HERO SECTION & PHOTO PROFILE AGEN                                  -->
+  <!-- ===================================================================== -->
+  <section id="beranda" class="relative overflow-hidden bg-gradient-to-b from-syariah-50 via-white to-slate-50 islamic-pattern-light pt-10 pb-16 sm:pt-16 sm:pb-24">
+    <div class="pointer-events-none absolute top-0 right-0 w-96 h-96 bg-syariah-200/40 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3"></div>
+    <div class="pointer-events-none absolute bottom-0 left-0 w-80 h-80 bg-gold-200/30 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+        
+        <!-- Kolom Kiri: Headline & CTA -->
+        <div class="lg:col-span-7 text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-syariah-100 border border-syariah-200 text-syariah-800 text-xs sm:text-sm font-bold mb-5">
+            <span class="w-2 h-2 rounded-full bg-syariah-600 animate-ping"></span>
+            <span>Partner Resmi Perencanaan &amp; Proteksi Syariah</span>
+          </div>
+
+          <h1 class="text-3xl sm:text-5xl lg:text-[52px] font-extrabold text-syariah-950 leading-[1.15] tracking-tight mb-5">
+            Tenangkan Hati &amp; Lindungi Keluarga dengan <span class="text-transparent bg-clip-text bg-gradient-to-r from-syariah-700 to-syariah-500">Syariah Concept</span>
+          </h1>
+
+          <p class="text-base sm:text-lg text-slate-600 leading-relaxed mb-6 max-w-2xl mx-auto lg:mx-0">
+            Assalamu'alaikum, saya <strong class="text-syariah-900">Andri Andriansyah</strong>. Saya membantu keluarga dan profesional merencanakan proteksi kesehatan cashless, dana resiko kritis, hingga warisan berkah sesuai prinsip syariah yang transparan dan menenangkan.
+          </p>
+
+          <!-- Mini Highlight Quote Banner -->
+          <div class="bg-white/90 border-l-4 border-gold-500 rounded-r-2xl p-4 shadow-sm mb-8 text-left max-w-2xl mx-auto lg:mx-0">
+            <p class="font-serif italic text-sm sm:text-base text-syariah-900">
+              “Kita tidak pernah bisa memilih kapan resiko datang, tapi kita selalu bisa memilih seberapa siap kita menghadapinya.”
+            </p>
+          </div>
+
+          <!-- CTA Buttons -->
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5 mb-8">
+            <a href="https://wa.me/628112201321?text=Assalamu'alaikum%20Pak%20Andri%20Andriansyah,%20saya%20ingin%20konsultasi%20gratis%20tentang%20proteksi%20%26%20perencanaan%20keuangan%20Syariah%20Concept." target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-7 py-4 rounded-2xl bg-gradient-to-r from-syariah-700 to-syariah-600 hover:from-syariah-800 hover:to-syariah-700 text-white font-bold text-base shadow-lg shadow-syariah-700/25 transition-all transform hover:-translate-y-0.5">
+              <i class="fa-brands fa-whatsapp text-xl"></i>
+              <span>Konsultasi Gratis via WA</span>
+            </a>
+            <a href="#video-edukasi" class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-2xl bg-white hover:bg-syariah-50 text-syariah-800 border-2 border-syariah-200 font-bold text-base transition-all">
+              <i class="fa-solid fa-circle-play text-gold-600 text-lg"></i>
+              <span>Tonton 3 Video Edukasi</span>
+            </a>
+          </div>
+
+          <!-- Quick Contact Info Pills -->
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 text-xs sm:text-sm text-slate-600 font-medium">
+            <a href="https://wa.me/628112201321" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 hover:text-syariah-700 transition-colors">
+              <span class="w-7 h-7 rounded-lg bg-syariah-100 text-syariah-700 flex items-center justify-center">
+                <i class="fa-brands fa-whatsapp"></i>
+              </span>
+              <span>0811-2201-321</span>
+            </a>
+            <span class="hidden sm:inline text-slate-300">|</span>
+            <a href="mailto:andriardiansyah97@gmail.com" class="inline-flex items-center gap-2 hover:text-syariah-700 transition-colors">
+              <span class="w-7 h-7 rounded-lg bg-gold-100 text-gold-600 flex items-center justify-center">
+                <i class="fa-solid fa-envelope"></i>
+              </span>
+              <span>andriardiansyah97@gmail.com</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Kolom Kanan: Kartu Photo Profile Profesional -->
+        <div class="lg:col-span-5 flex justify-center">
+          <div class="relative w-full max-w-sm">
+            <!-- Floating Badge Kiri Atas -->
+            <div class="animate-float absolute -top-4 -left-3 sm:-left-6 z-20 bg-white rounded-2xl p-3.5 shadow-xl border border-syariah-100 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-syariah-100 text-syariah-700 flex items-center justify-center text-lg">
+                <i class="fa-solid fa-hand-holding-heart"></i>
+              </div>
+              <div>
+                <p class="text-[11px] font-semibold text-slate-400 uppercase">Prinsip Akad</p>
+                <p class="text-xs sm:text-sm font-extrabold text-syariah-900">100% Syariah Concept</p>
+              </div>
+            </div>
+
+            <!-- Floating Badge Kanan Bawah -->
+            <div class="animate-float absolute -bottom-5 -right-2 sm:-right-5 z-20 bg-syariah-900 text-white rounded-2xl p-3.5 shadow-xl border border-syariah-700 flex items-center gap-3" style="animation-delay: 1.5s;">
+              <div class="w-10 h-10 rounded-xl bg-gold-500/20 text-gold-400 flex items-center justify-center text-lg">
+                <i class="fa-solid fa-file-shield"></i>
+              </div>
+              <div>
+                <p class="text-[11px] text-syariah-300">Pendampingan Klaim</p>
+                <p class="text-xs sm:text-sm font-bold text-white">Cepat &amp; Amanah</p>
+              </div>
+            </div>
+
+            <!-- Kartu Utama Profil -->
+            <div class="relative bg-white rounded-3xl p-6 sm:p-8 shadow-2xl shadow-syariah-900/10 border border-syariah-100 text-center">
+              <div class="relative w-44 h-44 sm:w-52 sm:h-52 mx-auto mb-5">
+                <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-syariah-700 via-syariah-500 to-gold-400 p-1.5 shadow-lg">
+                  <div class="w-full h-full rounded-full overflow-hidden bg-syariah-100">
+                    <img id="agent-profile-img" src="https://placehold.co/400x400/047857/ffffff?text=Andri+Andriansyah" alt="Foto Profil Andri Andriansyah - Agen Asuransi Syariah" class="w-full h-full object-cover object-top" />
+                  </div>
+                </div>
+              </div>
+
+              <span class="inline-block px-3 py-1 rounded-full bg-gold-50 text-gold-600 border border-gold-200 text-xs font-bold mb-2">
+                <i class="fa-solid fa-certificate mr-1"></i> SYARIAH CONCEPT ADVISOR
+              </span>
+              <h2 class="text-xl sm:text-2xl font-extrabold text-syariah-950">Andri Andriansyah</h2>
+              <p class="text-xs sm:text-sm text-slate-500 font-medium mt-1 mb-5">
+                Spesialis Proteksi Kesehatan, Sakit Kritis, Deposito &amp; Investasi Syariah
+              </p>
+
+              <!-- Kontak Singkat di Kartu -->
+              <div class="grid grid-cols-2 gap-2.5 pt-4 border-t border-slate-100">
+                <a href="https://wa.me/628112201321?text=Assalamu'alaikum%20Pak%20Andri,%20saya%20mau%20tanya%20program%20Syariah%20Concept." target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-syariah-600 hover:bg-syariah-700 text-white text-xs font-bold transition-colors">
+                  <i class="fa-brands fa-whatsapp text-sm"></i>
+                  <span>WhatsApp</span>
+                </a>
+                <a href="mailto:andriardiansyah97@gmail.com?subject=Konsultasi%20Syariah%20Concept" class="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold transition-colors">
+                  <i class="fa-solid fa-envelope text-sm text-syariah-700"></i>
+                  <span>Email</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- 4. PROFIL "SYARIAH CONCEPT"                                           -->
+  <!-- ===================================================================== -->
+  <section id="syariah-concept" class="py-16 sm:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="reveal text-center max-w-3xl mx-auto mb-14">
+        <span class="inline-block px-3.5 py-1 rounded-full bg-syariah-50 text-syariah-700 border border-syariah-200 text-xs font-bold uppercase tracking-wider mb-3">
+          Mengapa Memilih Syariah Concept?
+        </span>
+        <h2 class="text-2xl sm:text-4xl font-extrabold text-syariah-950 mb-4">
+          Konsep Proteksi &amp; Keuangan yang Halal, Adil, dan Saling Menolong
+        </h2>
+        <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+          Melalui <strong class="text-syariah-800">Syariah Concept</strong> bersama <strong>Andri Andriansyah</strong>, setiap kontribusi Anda dikelola secara transparan berbasis akad syariah—memberikan ketenangan lahir maupun batin bagi keluarga tercinta.
+        </p>
+      </div>
+
+      <!-- 4 Pilar Syariah Concept -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        <!-- Pilar 1 -->
+        <div class="reveal bg-gradient-to-b from-syariah-50/70 to-white rounded-3xl p-6 border border-syariah-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+          <div class="w-12 h-12 rounded-2xl bg-syariah-700 text-white flex items-center justify-center text-xl mb-5 shadow-md shadow-syariah-700/20">
+            <i class="fa-solid fa-hands-holding-circle"></i>
+          </div>
+          <h3 class="text-lg font-extrabold text-syariah-950 mb-2">Akad Tabarru' &amp; Ta'awun</h3>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            Mengusung prinsip tolong-menolong (<em>ta'awun</em>) antar sesama peserta melalui kumpulan dana kebajikan (<em>Tabarru'</em>), bebas dari unsur Riba, Gharar (ketidakjelasan), dan Maysir (judi).
+          </p>
+        </div>
+
+        <!-- Pilar 2 -->
+        <div class="reveal bg-gradient-to-b from-syariah-50/70 to-white rounded-3xl p-6 border border-syariah-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300" style="transition-delay: 100ms;">
+          <div class="w-12 h-12 rounded-2xl bg-gold-500 text-white flex items-center justify-center text-xl mb-5 shadow-md shadow-gold-500/20">
+            <i class="fa-solid fa-hospital-user"></i>
+          </div>
+          <h3 class="text-lg font-extrabold text-syariah-950 mb-2">Cashless Sesuai Tagihan</h3>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            Fasilitas kartu rumah sakit <em>cashless</em> di jaringan RS rekanan dalam dan luar negeri. Biaya kamar, dokter, obat, hingga tindakan operasi ditanggung sesuai tagihan.
+          </p>
+        </div>
+
+        <!-- Pilar 3 -->
+        <div class="reveal bg-gradient-to-b from-syariah-50/70 to-white rounded-3xl p-6 border border-syariah-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300" style="transition-delay: 200ms;">
+          <div class="w-12 h-12 rounded-2xl bg-syariah-700 text-white flex items-center justify-center text-xl mb-5 shadow-md shadow-syariah-700/20">
+            <i class="fa-solid fa-scale-balanced"></i>
+          </div>
+          <h3 class="text-lg font-extrabold text-syariah-950 mb-2">Surplus Underwriting &amp; Wakaf</h3>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            Transparansi pembagian surplus dana tabarru' serta fitur <strong class="text-syariah-800">Wakaf Polis</strong> untuk mengalirkan pahala jariyah abadi bagi ahli waris maupun lembaga sosial pilihan Anda.
+          </p>
+        </div>
+
+        <!-- Pilar 4 -->
+        <div class="reveal bg-gradient-to-b from-syariah-50/70 to-white rounded-3xl p-6 border border-syariah-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300" style="transition-delay: 300ms;">
+          <div class="w-12 h-12 rounded-2xl bg-gold-500 text-white flex items-center justify-center text-xl mb-5 shadow-md shadow-gold-500/20">
+            <i class="fa-solid fa-user-check"></i>
+          </div>
+          <h3 class="text-lg font-extrabold text-syariah-950 mb-2">Pendampingan Seumur Hidup</h3>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            Andri Andriansyah mendampingi langsung mulai dari analisa kebutuhan keuangan syariah, pembuatan ilustrasi, hingga pengawalan proses klaim di rumah sakit.
+          </p>
+        </div>
+      </div>
+
+      <!-- Banner Ajakan Konsultasi Syariah Concept -->
+      <div class="reveal rounded-3xl bg-gradient-to-r from-syariah-900 via-syariah-800 to-teal-900 islamic-pattern p-6 sm:p-10 text-white shadow-xl flex flex-col lg:flex-row items-center justify-between gap-6">
+        <div class="text-center lg:text-left max-w-2xl">
+          <span class="inline-block px-3 py-1 rounded-full bg-gold-500/20 text-gold-300 text-xs font-bold mb-2">
+            KONSULTASI PERSONAL &amp; REVIEW POLIS GRATIS
+          </span>
+          <h3 class="text-xl sm:text-2xl font-extrabold mb-2">
+            Sudah Punya Asuransi Konvensional &amp; Ingin Hijrah ke Syariah?
+          </h3>
+          <p class="text-sm sm:text-base text-syariah-100">
+            Diskusikan langsung bersama Andri Andriansyah untuk mengevaluasi kecukupan manfaat polis lama Anda tanpa tekanan.
+          </p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-3 w-full lg:w-auto shrink-0">
+          <a href="https://wa.me/628112201321?text=Assalamu'alaikum%20Pak%20Andri%20Andriansyah,%20saya%20ingin%20konsultasi%20mengenai%20Syariah%20Concept%20/%20Review%20Polis." target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-2xl bg-gold-500 hover:bg-gold-400 text-syariah-950 font-extrabold text-sm sm:text-base shadow-lg transition-all">
+            <i class="fa-brands fa-whatsapp text-lg"></i>
+            <span>Hubungi Andri (08112201321)</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- 4B. 3 VIDEO EDUKASI ANIMASI INTERAKTIF SYARIAH CONCEPT                -->
+  <!-- ===================================================================== -->
+  <section id="video-edukasi" class="py-16 sm:py-24 bg-slate-50 border-t border-syariah-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Header Section -->
+      <div class="reveal text-center max-w-3xl mx-auto mb-12 space-y-3">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-syariah-100 border border-syariah-200 text-syariah-800 text-xs font-bold uppercase tracking-wider">
+          <i class="fa-solid fa-film text-gold-600"></i>
+          <span>Video Presentasi Interaktif • Ultra Ringan</span>
+        </div>
+        <h2 class="font-serif text-2xl sm:text-4xl font-bold text-syariah-950 leading-tight">
+          3 Video Edukasi <span class="text-syariah-700 italic">Syariah Concept</span>
+        </h2>
+        <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+          Klik salah satu video di bawah untuk memutar presentasi animasi dengan <strong>hook tajam</strong>, ilustrasi interaktif, dan iringan instrumen syariah yang menenangkan bersama <strong>Andri Andriansyah</strong>.
+        </p>
+      </div>
+
+      <!-- Grid 3 Kartu Video -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+        <!-- VIDEO CARD 1: KESEHATAN SYARIAH -->
+        <article onclick="openStoryModal(0)" class="reveal group cursor-pointer rounded-3xl bg-white border border-syariah-100 overflow-hidden shadow-md hover:shadow-2xl hover:shadow-syariah-900/15 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
+          <div>
+            <div class="relative aspect-video bg-gradient-to-br from-syariah-950 via-syariah-900 to-teal-900 islamic-pattern flex flex-col items-center justify-center p-6 overflow-hidden">
+              <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(251,191,36,0.25),transparent_60%)]"></div>
+              <span class="absolute top-3.5 left-3.5 px-3 py-1 rounded-full bg-syariah-950/85 border border-gold-400/40 text-gold-400 text-[11px] font-bold uppercase tracking-wider">
+                Video 01 • Health Syariah
+              </span>
+              <span class="absolute top-3.5 right-3.5 px-2.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/30 text-emerald-200 text-[10px] font-semibold flex items-center gap-1.5">
+                <i class="fa-solid fa-music text-[10px]"></i>
+                <span>Audio On</span>
+              </span>
+              <div class="relative z-10 w-16 h-16 rounded-full bg-gradient-to-r from-gold-400 to-gold-500 text-syariah-950 flex items-center justify-center btn-play-pulse group-hover:scale-110 transition-transform duration-300">
+                <i class="fa-solid fa-play text-xl ml-1"></i>
+              </div>
+              <p class="relative z-10 mt-3 text-xs font-bold text-syariah-100 tracking-wide">Putar Presentasi (4 Slide)</p>
+              <div class="absolute bottom-0 inset-x-0 bg-syariah-950/90 border-t border-gold-400/25 py-1.5 overflow-hidden">
+                <div class="video-ticker-track text-[11px] text-gold-300 font-semibold">
+                  <span class="px-4">&#9679; Tabungan 100 Juta Habis Seketika di RS?! &bull; Selamatkan Aset dengan Akad Tabarru' Syariah</span>
+                  <span class="px-4">&#9679; Tabungan 100 Juta Habis Seketika di RS?! &bull; Selamatkan Aset dengan Akad Tabarru' Syariah</span>
+                </div>
+              </div>
+            </div>
+            <div class="p-6 space-y-2.5">
+              <div class="inline-block px-2.5 py-0.5 rounded-md bg-red-50 text-red-700 text-[11px] font-bold">
+                HOOK: “Tabungan 100 Juta Habis dalam Seminggu di RS?!”
+              </div>
+              <h3 class="font-serif text-xl font-bold text-syariah-950 group-hover:text-syariah-700 transition leading-snug">
+                Tagihan RS Ratusan Juta: Tabungan Terkuras atau Pakai Konsep Tolong-Menolong?
+              </h3>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Pahami cara menjaga pokok deposito dan tabungan keluarga tetap utuh 100% lewat fasilitas kartu rumah sakit <em>cashless</em> berbasis akad <em>Ta'awun</em>.
+              </p>
+            </div>
+          </div>
+          <div class="px-6 pb-6 pt-2 flex items-center justify-between text-xs font-bold border-t border-slate-100 mt-2">
+            <span class="inline-flex items-center gap-1.5 text-syariah-800 group-hover:text-gold-600 transition">
+              <i class="fa-solid fa-circle-play text-base"></i>
+              <span>Tonton Video 1</span>
+            </span>
+            <span class="text-slate-400 font-medium">Durasi ~24 Detik</span>
+          </div>
+        </article>
+
+        <!-- VIDEO CARD 2: JIWA & WARISAN SYARIAH -->
+        <article onclick="openStoryModal(1)" class="reveal group cursor-pointer rounded-3xl bg-white border border-syariah-100 overflow-hidden shadow-md hover:shadow-2xl hover:shadow-syariah-900/15 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between" style="transition-delay: 100ms;">
+          <div>
+            <div class="relative aspect-video bg-gradient-to-br from-syariah-950 via-emerald-900 to-syariah-800 islamic-pattern flex flex-col items-center justify-center p-6 overflow-hidden">
+              <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(251,191,36,0.28),transparent_60%)]"></div>
+              <span class="absolute top-3.5 left-3.5 px-3 py-1 rounded-full bg-syariah-950/85 border border-gold-400/40 text-gold-400 text-[11px] font-bold uppercase tracking-wider">
+                Video 02 • Warisan &amp; Wakaf
+              </span>
+              <span class="absolute top-3.5 right-3.5 px-2.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/30 text-emerald-200 text-[10px] font-semibold flex items-center gap-1.5">
+                <i class="fa-solid fa-music text-[10px]"></i>
+                <span>Audio On</span>
+              </span>
+              <div class="relative z-10 w-16 h-16 rounded-full bg-gradient-to-r from-gold-400 to-gold-500 text-syariah-950 flex items-center justify-center btn-play-pulse group-hover:scale-110 transition-transform duration-300">
+                <i class="fa-solid fa-play text-xl ml-1"></i>
+              </div>
+              <p class="relative z-10 mt-3 text-xs font-bold text-syariah-100 tracking-wide">Putar Presentasi (4 Slide)</p>
+              <div class="absolute bottom-0 inset-x-0 bg-syariah-950/90 border-t border-gold-400/25 py-1.5 overflow-hidden">
+                <div class="video-ticker-track text-[11px] text-gold-300 font-semibold">
+                  <span class="px-4">&#9679; Jika Penghasilan Berhenti Hari Ini, Keluarga Bertahan Berapa Lama? &bull; Warisan Halal + Wakaf Jariyah</span>
+                  <span class="px-4">&#9679; Jika Penghasilan Berhenti Hari Ini, Keluarga Bertahan Berapa Lama? &bull; Warisan Halal + Wakaf Jariyah</span>
+                </div>
+              </div>
+            </div>
+            <div class="p-6 space-y-2.5">
+              <div class="inline-block px-2.5 py-0.5 rounded-md bg-amber-50 text-amber-800 text-[11px] font-bold">
+                HOOK: “Jika Penghasilan Berhenti Hari Ini, Keluarga Bertahan Berapa Lama?”
+              </div>
+              <h3 class="font-serif text-xl font-bold text-syariah-950 group-hover:text-syariah-700 transition leading-snug">
+                Bukan Soal Kapan Kita Pergi, Tapi Apa yang Kita Tinggalkan untuk Keluarga
+              </h3>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Siapkan santunan biaya hidup ratusan juta hingga miliaran rupiah bebas riba, lengkap dengan fitur <strong>Wakaf Polis</strong> agar pahala terus mengalir.
+              </p>
+            </div>
+          </div>
+          <div class="px-6 pb-6 pt-2 flex items-center justify-between text-xs font-bold border-t border-slate-100 mt-2">
+            <span class="inline-flex items-center gap-1.5 text-syariah-800 group-hover:text-gold-600 transition">
+              <i class="fa-solid fa-circle-play text-base"></i>
+              <span>Tonton Video 2</span>
+            </span>
+            <span class="text-slate-400 font-medium">Durasi ~24 Detik</span>
+          </div>
+        </article>
+
+        <!-- VIDEO CARD 3: KOMBINASI SAKIT KRITIS + INCOME PROTECTION -->
+        <article onclick="openStoryModal(2)" class="reveal group cursor-pointer rounded-3xl bg-white border border-syariah-100 overflow-hidden shadow-md hover:shadow-2xl hover:shadow-syariah-900/15 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between" style="transition-delay: 200ms;">
+          <div>
+            <div class="relative aspect-video bg-gradient-to-br from-teal-950 via-syariah-900 to-syariah-950 islamic-pattern flex flex-col items-center justify-center p-6 overflow-hidden">
+              <div class="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(251,191,36,0.25),transparent_60%)]"></div>
+              <span class="absolute top-3.5 left-3.5 px-3 py-1 rounded-full bg-syariah-950/85 border border-gold-400/40 text-gold-400 text-[11px] font-bold uppercase tracking-wider">
+                Video 03 • Sakit Kritis
+              </span>
+              <span class="absolute top-3.5 right-3.5 px-2.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/30 text-emerald-200 text-[10px] font-semibold flex items-center gap-1.5">
+                <i class="fa-solid fa-music text-[10px]"></i>
+                <span>Audio On</span>
+              </span>
+              <div class="relative z-10 w-16 h-16 rounded-full bg-gradient-to-r from-gold-400 to-gold-500 text-syariah-950 flex items-center justify-center btn-play-pulse group-hover:scale-110 transition-transform duration-300">
+                <i class="fa-solid fa-play text-xl ml-1"></i>
+              </div>
+              <p class="relative z-10 mt-3 text-xs font-bold text-syariah-100 tracking-wide">Putar Presentasi (4 Slide)</p>
+              <div class="absolute bottom-0 inset-x-0 bg-syariah-950/90 border-t border-gold-400/25 py-1.5 overflow-hidden">
+                <div class="video-ticker-track text-[11px] text-gold-300 font-semibold">
+                  <span class="px-4">&#9679; 2 Tagihan Besar Saat Sakit Kritis Datang! &bull; Tagihan RS + Tagihan Dapur Keluarga</span>
+                  <span class="px-4">&#9679; 2 Tagihan Besar Saat Sakit Kritis Datang! &bull; Tagihan RS + Tagihan Dapur Keluarga</span>
+                </div>
+              </div>
+            </div>
+            <div class="p-6 space-y-2.5">
+              <div class="inline-block px-2.5 py-0.5 rounded-md bg-emerald-50 text-emerald-800 text-[11px] font-bold">
+                HOOK: “2 Tagihan Besar Saat Sakit Kritis Datang Sekaligus!”
+              </div>
+              <h3 class="font-serif text-xl font-bold text-syariah-950 group-hover:text-syariah-700 transition leading-snug">
+                Sakit Kritis: Dua Risiko Sekaligus yang Sering Dilupakan Pencari Nafkah
+              </h3>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Kartu RS hanya membayar rumah sakit, tapi tidak memberi uang tunai belanja bulanan. Lihat solusi kombinasi <em>Cashless RS + Santunan Tunai</em>.
+              </p>
+            </div>
+          </div>
+          <div class="px-6 pb-6 pt-2 flex items-center justify-between text-xs font-bold border-t border-slate-100 mt-2">
+            <span class="inline-flex items-center gap-1.5 text-syariah-800 group-hover:text-gold-600 transition">
+              <i class="fa-solid fa-circle-play text-base"></i>
+              <span>Tonton Video 3</span>
+            </span>
+            <span class="text-slate-400 font-medium">Durasi ~24 Detik</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- 5. 3 KALKULATOR FINANSIAL & PROTEKSI DENGAN REKOMENDASI ANDRI         -->
+  <!-- ===================================================================== -->
+  <section id="kalkulator" class="py-16 sm:py-24 bg-syariah-50/70 islamic-pattern-light border-y border-syariah-100">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Header Section -->
+      <div class="reveal text-center max-w-3xl mx-auto mb-10">
+        <span class="inline-block px-3.5 py-1 rounded-full bg-white text-syariah-700 border border-syariah-200 text-xs font-bold uppercase tracking-wider mb-3 shadow-sm">
+          Simulasi Perencanaan Keuangan
+        </span>
+        <h2 class="text-2xl sm:text-4xl font-extrabold text-syariah-950 mb-3">
+          3 Kalkulator Syariah &amp; Rekomendasi Andri
+        </h2>
+        <p class="text-slate-600 text-sm sm:text-base">
+          Hitung potensi bagi hasil deposito syariah, pertumbuhan investasi masa depan, serta kebutuhan proteksi kesehatan keluarga Anda secara real-time.
+        </p>
+      </div>
+
+      <!-- Tab Navigation untuk 3 Kalkulator -->
+      <div class="reveal flex flex-wrap justify-center gap-2.5 sm:gap-3 mb-8" role="tablist">
+        <button type="button" data-tab="deposito" class="calc-tab-btn active flex items-center gap-2 px-5 py-3.5 rounded-2xl font-bold text-xs sm:text-sm bg-syariah-700 text-white shadow-lg shadow-syariah-700/25 transition-all cursor-pointer">
+          <i class="fa-solid fa-vault"></i>
+          <span>1. Kalkulator Deposito Syariah</span>
+        </button>
+        <button type="button" data-tab="investasi" class="calc-tab-btn flex items-center gap-2 px-5 py-3.5 rounded-2xl font-bold text-xs sm:text-sm bg-white text-slate-700 hover:bg-syariah-100 border border-syariah-200 transition-all cursor-pointer">
+          <i class="fa-solid fa-chart-line"></i>
+          <span>2. Kalkulator Investasi Syariah</span>
+        </button>
+        <button type="button" data-tab="proteksi" class="calc-tab-btn flex items-center gap-2 px-5 py-3.5 rounded-2xl font-bold text-xs sm:text-sm bg-white text-slate-700 hover:bg-syariah-100 border border-syariah-200 transition-all cursor-pointer">
+          <i class="fa-solid fa-shield-heart"></i>
+          <span>3. Kalkulator Dana Darurat &amp; Proteksi</span>
+        </button>
+      </div>
+
+      <!-- PANEL KALKULATOR 1: DEPOSITO SYARIAH (MUDHARABAH) -->
+      <div id="panel-deposito" class="calc-panel bg-white rounded-3xl shadow-xl shadow-syariah-900/5 border border-syariah-100 p-6 sm:p-10">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-6 mb-6 border-b border-slate-100">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-syariah-600">Simulasi Akad Mudharabah</span>
+            <h3 class="text-xl sm:text-2xl font-extrabold text-syariah-950">Kalkulator Deposito Syariah</h3>
+          </div>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-syariah-50 text-syariah-700 text-xs font-bold">
+            <i class="fa-solid fa-percent"></i> Estimasi Nisbah Kompetitif
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <div class="lg:col-span-6 space-y-6">
+            <div>
+              <div class="flex justify-between items-center mb-2">
+                <label for="dep-amount" class="text-sm font-bold text-slate-700">Nominal Penempatan Dana</label>
+                <span id="dep-amount-label" class="text-base font-extrabold text-syariah-700">Rp 100.000.000</span>
+              </div>
+              <input id="dep-amount" type="range" min="10000000" max="2000000000" step="10000000" value="100000000" class="w-full" />
+              <div class="flex justify-between text-[11px] text-slate-400 mt-1">
+                <span>Rp 10 Juta</span>
+                <span>Rp 1 Miliar</span>
+                <span>Rp 2 Miliar</span>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-sm font-bold text-slate-700 mb-2">Jangka Waktu Penempatan (Tenor)</label>
+              <div class="grid grid-cols-5 gap-2" id="dep-tenor-group">
+                <button type="button" data-tenor="1" class="dep-tenor-btn py-2.5 rounded-xl text-xs sm:text-sm font-bold border border-slate-200 bg-slate-50 text-slate-700 hover:bg-syariah-50 cursor-pointer">1 Bln</button>
+                <button type="button" data-tenor="3" class="dep-tenor-btn py-2.5 rounded-xl text-xs sm:text-sm font-bold border border-slate-200 bg-slate-50 text-slate-700 hover:bg-syariah-50 cursor-pointer">3 Bln</button>
+                <button type="button" data-tenor="6" class="dep-tenor-btn py-2.5 rounded-xl text-xs sm:text-sm font-bold border border-slate-200 bg-slate-50 text-slate-700 hover:bg-syariah-50 cursor-pointer">6 Bln</button>
+                <button type="button" data-tenor="12" class="dep-tenor-btn active py-2.5 rounded-xl text-xs sm:text-sm font-bold border border-syariah-600 bg-syariah-700 text-white shadow-sm cursor-pointer">12 Bln</button>
+                <button type="button" data-tenor="24" class="dep-tenor-btn py-2.5 rounded-xl text-xs sm:text-sm font-bold border border-slate-200 bg-slate-50 text-slate-700 hover:bg-syariah-50 cursor-pointer">24 Bln</button>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between items-center mb-2">
+                <label for="dep-rate" class="text-sm font-bold text-slate-700">Indikasi Bagi Hasil (Equivalent Rate / Thn)</label>
+                <span id="dep-rate-label" class="text-base font-extrabold text-gold-600">5.5% p.a.</span>
+              </div>
+              <input id="dep-rate" type="range" min="3.0" max="8.0" step="0.25" value="5.5" class="w-full" />
+              <div class="flex justify-between text-[11px] text-slate-400 mt-1">
+                <span>3.0% p.a.</span>
+                <span>5.5% p.a.</span>
+                <span>8.0% p.a.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-6 flex flex-col justify-between space-y-5">
+            <div class="bg-gradient-to-br from-syariah-900 to-syariah-800 text-white rounded-2xl p-6 shadow-lg">
+              <p class="text-xs uppercase tracking-wider text-syariah-300 font-semibold mb-1">Estimasi Bagi Hasil Bersih (Setelah Pajak 20%)</p>
+              <p id="dep-net-profit" class="text-2xl sm:text-3xl font-extrabold text-gold-400 mb-4">Rp 4.400.000</p>
+              
+              <div class="grid grid-cols-2 gap-3 pt-4 border-t border-syariah-700/70 text-xs sm:text-sm">
+                <div>
+                  <span class="block text-syariah-300">Bagi Hasil Kotor</span>
+                  <span id="dep-gross-profit" class="font-bold text-white">Rp 5.500.000</span>
+                </div>
+                <div>
+                  <span class="block text-syariah-300">Total Dana Akhir</span>
+                  <span id="dep-total-end" class="font-bold text-syariah-200">Rp 104.400.000</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-gold-50/80 border border-gold-200 rounded-2xl p-5">
+              <div class="flex items-start gap-3">
+                <div class="w-9 h-9 rounded-xl bg-gold-500 text-white flex items-center justify-center shrink-0 mt-0.5">
+                  <i class="fa-solid fa-lightbulb"></i>
+                </div>
+                <div>
+                  <h4 class="text-sm font-extrabold text-syariah-950 mb-1">Rekomendasi Andri Andriansyah:</h4>
+                  <p id="dep-recommendation" class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                    Jangan biarkan pokok deposito Anda tergerus jika sewaktu-waktu terjadi risiko sakit! Cukup alokasikan sebagian bagi hasil deposito (sekitar Rp 366.000/bln) untuk memiliki Kartu Rumah Sakit Syariah Cashless, sehingga pokok dana Rp 100 Juta Anda tetap utuh 100%.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <button id="dep-wa-btn" type="button" class="w-full inline-flex items-center justify-center gap-2.5 py-3.5 px-6 rounded-2xl bg-syariah-700 hover:bg-syariah-800 text-white font-bold text-sm shadow-md transition-all cursor-pointer">
+              <i class="fa-brands fa-whatsapp text-lg"></i>
+              <span>Konsultasikan Hasil Deposito Ini ke Andri</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL KALKULATOR 2: INVESTASI SYARIAH & DANA MASA DEPAN -->
+      <div id="panel-investasi" class="calc-panel hidden bg-white rounded-3xl shadow-xl shadow-syariah-900/5 border border-syariah-100 p-6 sm:p-10">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-6 mb-6 border-b border-slate-100">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-syariah-600">Perencanaan Pendidikan &amp; Pensiun Berkah</span>
+            <h3 class="text-xl sm:text-2xl font-extrabold text-syariah-950">Kalkulator Investasi Syariah</h3>
+          </div>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-syariah-50 text-syariah-700 text-xs font-bold">
+            <i class="fa-solid fa-seedling"></i> Compounding Syariah
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <div class="lg:col-span-6 space-y-5">
+            <div>
+              <div class="flex justify-between items-center mb-1.5">
+                <label for="inv-initial" class="text-sm font-bold text-slate-700">Dana Awal Investasi</label>
+                <span id="inv-initial-label" class="text-base font-extrabold text-syariah-700">Rp 20.000.000</span>
+              </div>
+              <input id="inv-initial" type="range" min="0" max="500000000" step="5000000" value="20000000" class="w-full" />
+            </div>
+
+            <div>
+              <div class="flex justify-between items-center mb-1.5">
+                <label for="inv-monthly" class="text-sm font-bold text-slate-700">Setoran Rutin per Bulan</label>
+                <span id="inv-monthly-label" class="text-base font-extrabold text-syariah-700">Rp 1.500.000</span>
+              </div>
+              <input id="inv-monthly" type="range" min="250000" max="25000000" step="250000" value="1500000" class="w-full" />
+            </div>
+
+            <div>
+              <div class="flex justify-between items-center mb-1.5">
+                <label for="inv-years" class="text-sm font-bold text-slate-700">Jangka Waktu Investasi</label>
+                <span id="inv-years-label" class="text-base font-extrabold text-syariah-700">10 Tahun</span>
+              </div>
+              <input id="inv-years" type="range" min="1" max="30" step="1" value="10" class="w-full" />
+            </div>
+
+            <div>
+              <label class="block text-sm font-bold text-slate-700 mb-2">Pilihan Profil Portofolio Syariah</label>
+              <div class="grid grid-cols-3 gap-2" id="inv-profile-group">
+                <button type="button" data-rate="6" class="inv-profile-btn py-2.5 px-2 rounded-xl text-xs font-bold border border-slate-200 bg-slate-50 text-slate-700 hover:bg-syariah-50 cursor-pointer">
+                  Konservatif<br><span class="text-syariah-600">~6% / thn</span>
+                </button>
+                <button type="button" data-rate="9" class="inv-profile-btn active py-2.5 px-2 rounded-xl text-xs font-bold border border-syariah-600 bg-syariah-700 text-white shadow-sm cursor-pointer">
+                  Moderat<br><span class="text-gold-300">~9% / thn</span>
+                </button>
+                <button type="button" data-rate="12" class="inv-profile-btn py-2.5 px-2 rounded-xl text-xs font-bold border border-slate-200 bg-slate-50 text-slate-700 hover:bg-syariah-50 cursor-pointer">
+                  Agresif Syariah<br><span class="text-syariah-600">~12% / thn</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-6 flex flex-col justify-between space-y-5">
+            <div class="bg-gradient-to-br from-syariah-900 to-teal-900 text-white rounded-2xl p-6 shadow-lg">
+              <p class="text-xs uppercase tracking-wider text-syariah-300 font-semibold mb-1">Estimasi Total Nilai Dana Masa Depan</p>
+              <p id="inv-total-future" class="text-2xl sm:text-3xl font-extrabold text-gold-400 mb-4">Rp 339.261.000</p>
+
+              <div class="w-full h-3.5 bg-syariah-950 rounded-full overflow-hidden flex mb-3">
+                <div id="inv-bar-principal" class="bg-syariah-400 h-full transition-all duration-500" style="width: 59%;"></div>
+                <div id="inv-bar-growth" class="bg-gold-400 h-full transition-all duration-500" style="width: 41%;"></div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-3 text-xs sm:text-sm">
+                <div class="flex items-center gap-2">
+                  <span class="w-3 h-3 rounded-full bg-syariah-400 shrink-0"></span>
+                  <div>
+                    <span class="block text-syariah-300 text-[11px]">Total Pokok Disetor</span>
+                    <span id="inv-total-principal" class="font-bold text-white">Rp 200.000.000</span>
+                  </div>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="w-3 h-3 rounded-full bg-gold-400 shrink-0"></span>
+                  <div>
+                    <span class="block text-syariah-300 text-[11px]">Potensi Pengembangan</span>
+                    <span id="inv-total-growth" class="font-bold text-gold-300">Rp 139.261.000</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-gold-50/80 border border-gold-200 rounded-2xl p-5">
+              <div class="flex items-start gap-3">
+                <div class="w-9 h-9 rounded-xl bg-gold-500 text-white flex items-center justify-center shrink-0 mt-0.5">
+                  <i class="fa-solid fa-user-tie"></i>
+                </div>
+                <div>
+                  <h4 class="text-sm font-extrabold text-syariah-950 mb-1">Rekomendasi Andri Andriansyah:</h4>
+                  <p id="inv-recommendation" class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                    Investasi syariah Anda berpotensi tumbuh menjadi Rp 339 Juta. Agar rencana jangka panjang ini tidak terhenti di tengah jalan akibat risiko sakit kritis atau cacat tetap, lengkapi dengan fitur Payor Benefit (Pembebasan Setoran) Syariah.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <button id="inv-wa-btn" type="button" class="w-full inline-flex items-center justify-center gap-2.5 py-3.5 px-6 rounded-2xl bg-syariah-700 hover:bg-syariah-800 text-white font-bold text-sm shadow-md transition-all cursor-pointer">
+              <i class="fa-brands fa-whatsapp text-lg"></i>
+              <span>Diskusikan Rencana Investasi Ini ke Andri</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL KALKULATOR 3: DANA DARURAT & PROTEKSI KESEHATAN SYARIAH -->
+      <div id="panel-proteksi" class="calc-panel hidden bg-white rounded-3xl shadow-xl shadow-syariah-900/5 border border-syariah-100 p-6 sm:p-10">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-6 mb-6 border-b border-slate-100">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-syariah-600">Benteng Finansial Keluarga</span>
+            <h3 class="text-xl sm:text-2xl font-extrabold text-syariah-950">Kalkulator Dana Darurat &amp; Proteksi Syariah</h3>
+          </div>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-syariah-50 text-syariah-700 text-xs font-bold">
+            <i class="fa-solid fa-heart-pulse"></i> Standar Perencanaan Syariah
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <div class="lg:col-span-6 space-y-6">
+            <div>
+              <div class="flex justify-between items-center mb-2">
+                <label for="pro-expense" class="text-sm font-bold text-slate-700">Pengeluaran Rutin Keluarga / Bulan</label>
+                <span id="pro-expense-label" class="text-base font-extrabold text-syariah-700">Rp 8.000.000</span>
+              </div>
+              <input id="pro-expense" type="range" min="3000000" max="50000000" step="500000" value="8000000" class="w-full" />
+              <div class="flex justify-between text-[11px] text-slate-400 mt-1">
+                <span>Rp 3 Juta</span>
+                <span>Rp 25 Juta</span>
+                <span>Rp 50 Juta</span>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between items-center mb-2">
+                <label for="pro-dependents" class="text-sm font-bold text-slate-700">Jumlah Anggota Keluarga / Tanggungan</label>
+                <span id="pro-dependents-label" class="text-base font-extrabold text-syariah-700">3 Orang</span>
+              </div>
+              <input id="pro-dependents" type="range" min="1" max="6" step="1" value="3" class="w-full" />
+              <div class="flex justify-between text-[11px] text-slate-400 mt-1">
+                <span>1 (Lajang)</span>
+                <span>3 (Keluarga Kecil)</span>
+                <span>6 (Keluarga Besar)</span>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-sm font-bold text-slate-700 mb-2">Preferensi Plan Kamar Rumah Sakit Syariah</label>
+              <div class="grid grid-cols-3 gap-2" id="pro-plan-group">
+                <button type="button" data-plan="2 Bed" data-multiplier="1" class="pro-plan-btn py-2.5 px-2 rounded-xl text-xs font-bold border border-slate-200 bg-slate-50 text-slate-700 hover:bg-syariah-50 cursor-pointer">
+                  Plan Silver<br><span class="font-normal">Kamar 2 Bed</span>
+                </button>
+                <button type="button" data-plan="1 Bed (VIP)" data-multiplier="1.35" class="pro-plan-btn active py-2.5 px-2 rounded-xl text-xs font-bold border border-syariah-600 bg-syariah-700 text-white shadow-sm cursor-pointer">
+                  Plan Gold<br><span class="font-normal text-gold-300">Kamar 1 Bed</span>
+                </button>
+                <button type="button" data-plan="Suite / Asia" data-multiplier="1.8" class="pro-plan-btn py-2.5 px-2 rounded-xl text-xs font-bold border border-slate-200 bg-slate-50 text-slate-700 hover:bg-syariah-50 cursor-pointer">
+                  Plan Platinum<br><span class="font-normal">1 Bed + Asia</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-6 flex flex-col justify-between space-y-5">
+            <div class="bg-gradient-to-br from-syariah-900 to-syariah-800 text-white rounded-2xl p-6 shadow-lg space-y-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="bg-white/10 rounded-xl p-3.5">
+                  <span class="block text-[11px] uppercase tracking-wider text-syariah-200">Target Dana Darurat Ideal</span>
+                  <span id="pro-emergency-fund" class="text-lg sm:text-xl font-extrabold text-white">Rp 72.000.000</span>
+                  <span id="pro-emergency-months" class="block text-[11px] text-syariah-300 mt-0.5">(9x pengeluaran bulanan)</span>
+                </div>
+                <div class="bg-white/10 rounded-xl p-3.5">
+                  <span class="block text-[11px] uppercase tracking-wider text-gold-300">Plafon Sakit Kritis Ideal</span>
+                  <span id="pro-ci-fund" class="text-lg sm:text-xl font-extrabold text-gold-400">Rp 384.000.000</span>
+                  <span class="block text-[11px] text-syariah-300 mt-0.5">(4 tahun biaya hidup)</span>
+                </div>
+              </div>
+
+              <div class="pt-3 border-t border-syariah-700/70 flex items-center justify-between text-xs sm:text-sm">
+                <span class="text-syariah-200">Alokasi Ideal Proteksi (10% Cashflow):</span>
+                <span id="pro-budget" class="font-extrabold text-gold-300 text-base">Rp 800.000 / bln</span>
+              </div>
+            </div>
+
+            <div class="bg-gold-50/80 border border-gold-200 rounded-2xl p-5">
+              <div class="flex items-start gap-3">
+                <div class="w-9 h-9 rounded-xl bg-gold-500 text-white flex items-center justify-center shrink-0 mt-0.5">
+                  <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <div>
+                  <h4 class="text-sm font-extrabold text-syariah-950 mb-1">Rekomendasi Andri Andriansyah:</h4>
+                  <p id="pro-recommendation" class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                    Dengan pengeluaran Rp 8 Juta/bulan dan 3 tanggungan, prioritaskan Kartu Kesehatan Syariah Plan Gold (1 Bed) terlebih dahulu agar biaya rumah sakit tidak menyedot Dana Darurat Rp 72 Juta Anda. Saya siap buatkan ilustrasi resmi sesuai usia Anda.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <button id="pro-wa-btn" type="button" class="w-full inline-flex items-center justify-center gap-2.5 py-3.5 px-6 rounded-2xl bg-syariah-700 hover:bg-syariah-800 text-white font-bold text-sm shadow-md transition-all cursor-pointer">
+              <i class="fa-brands fa-whatsapp text-lg"></i>
+              <span>Minta Ilustrasi Proteksi Ini ke Andri</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- 6. 6 TESTIMONI KLAIM NASABAH                                          -->
+  <!-- ===================================================================== -->
+  <section id="testimoni" class="py-16 sm:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="reveal text-center max-w-3xl mx-auto mb-14">
+        <span class="inline-block px-3.5 py-1 rounded-full bg-syariah-50 text-syariah-700 border border-syariah-200 text-xs font-bold uppercase tracking-wider mb-3">
+          Bukti Nyata Pelayanan &amp; Amanah
+        </span>
+        <h2 class="text-2xl sm:text-4xl font-extrabold text-syariah-950 mb-4">
+          6 Cerita &amp; Testimoni Klaim Nasabah
+        </h2>
+        <p class="text-slate-600 text-sm sm:text-base">
+          Kepercayaan nasabah adalah prioritas utama. Berikut pengalaman para nasabah yang telah terbantu saat proses klaim rawat inap, tindakan operasi, sakit kritis, hingga santunan warisan syariah.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <!-- Testimoni 1 -->
+        <article class="reveal bg-slate-50/70 hover:bg-white rounded-3xl p-6 border border-syariah-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-syariah-100 text-syariah-800 text-xs font-bold">
+                <i class="fa-solid fa-circle-check text-syariah-600"></i> Cashless Approved
+              </span>
+              <span class="text-xs font-extrabold text-gold-600 bg-gold-50 px-2.5 py-1 rounded-lg border border-gold-200">
+                Rp 28.500.000
+              </span>
+            </div>
+            <h3 class="text-base font-extrabold text-syariah-950 mb-2">Klaim Rawat Inap DBD &amp; Tifus</h3>
+            <p class="text-sm text-slate-600 leading-relaxed italic mb-5">
+              “Alhamdulillah, saat saya dirawat 6 hari karena DBD dan tifus, masuk RS langsung pakai kartu cashless tanpa keluar deposit sepeser pun. Mas Andri sigap memantau administrasi sampai saya pulang.”
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-200/70">
+            <div class="w-10 h-10 rounded-full bg-syariah-700 text-white font-bold text-sm flex items-center justify-center shrink-0">
+              HW
+            </div>
+            <div>
+              <p class="text-sm font-bold text-syariah-950">Bpk. Hendra Wijaya</p>
+              <p class="text-xs text-slate-500">Nasabah • Bandung</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Testimoni 2 -->
+        <article class="reveal bg-slate-50/70 hover:bg-white rounded-3xl p-6 border border-syariah-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between" style="transition-delay: 80ms;">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-syariah-100 text-syariah-800 text-xs font-bold">
+                <i class="fa-solid fa-circle-check text-syariah-600"></i> Klaim Terbayar 100%
+              </span>
+              <span class="text-xs font-extrabold text-gold-600 bg-gold-50 px-2.5 py-1 rounded-lg border border-gold-200">
+                Rp 42.000.000
+              </span>
+            </div>
+            <h3 class="text-base font-extrabold text-syariah-950 mb-2">Klaim Operasi Usus Buntu Akut</h3>
+            <p class="text-sm text-slate-600 leading-relaxed italic mb-5">
+              “Tindakan operasi mendadak tengah malam, panik sekali rasanya. Untung langsung hubungi Pak Andri, dibantu koordinasi ke bagian penjaminan RS sehingga semua tagihan Rp 42 juta beres sesuai tagihan.”
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-200/70">
+            <div class="w-10 h-10 rounded-full bg-gold-600 text-white font-bold text-sm flex items-center justify-center shrink-0">
+              SR
+            </div>
+            <div>
+              <p class="text-sm font-bold text-syariah-950">Ibu Siti Rahmawati</p>
+              <p class="text-xs text-slate-500">Nasabah • Cimahi</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Testimoni 3 -->
+        <article class="reveal bg-slate-50/70 hover:bg-white rounded-3xl p-6 border border-syariah-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between" style="transition-delay: 160ms;">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-syariah-100 text-syariah-800 text-xs font-bold">
+                <i class="fa-solid fa-circle-check text-syariah-600"></i> Santunan Tunai Cair
+              </span>
+              <span class="text-xs font-extrabold text-gold-600 bg-gold-50 px-2.5 py-1 rounded-lg border border-gold-200">
+                Rp 350.000.000
+              </span>
+            </div>
+            <h3 class="text-base font-extrabold text-syariah-950 mb-2">Klaim Sakit Kritis Jantung</h3>
+            <p class="text-sm text-slate-600 leading-relaxed italic mb-5">
+              “Saat didiagnosis penyumbatan jantung dan harus istirahat total dari usaha, santunan sakit kritis syariah cair cepat. Dana ini benar-benar menyelamatkan biaya hidup keluarga dan operasional toko kami.”
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-200/70">
+            <div class="w-10 h-10 rounded-full bg-syariah-700 text-white font-bold text-sm flex items-center justify-center shrink-0">
+              RK
+            </div>
+            <div>
+              <p class="text-sm font-bold text-syariah-950">Bpk. Ridwan Kamiludin</p>
+              <p class="text-xs text-slate-500">Pengusaha • Jakarta</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Testimoni 4 -->
+        <article class="reveal bg-slate-50/70 hover:bg-white rounded-3xl p-6 border border-syariah-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-syariah-100 text-syariah-800 text-xs font-bold">
+                <i class="fa-solid fa-circle-check text-syariah-600"></i> Cashless Kamar 1 Bed
+              </span>
+              <span class="text-xs font-extrabold text-gold-600 bg-gold-50 px-2.5 py-1 rounded-lg border border-gold-200">
+                Rp 19.800.000
+              </span>
+            </div>
+            <h3 class="text-base font-extrabold text-syariah-950 mb-2">Klaim Rawat Inap Anak (Pneumonia)</h3>
+            <p class="text-sm text-slate-600 leading-relaxed italic mb-5">
+              “Anak kami harus dirawat karena pneumonia. Berkat saran Mas Andri ambil plan kamar 1 bed, anak bisa istirahat tenang dan orang tua nyaman menjaga. Klaim lancar tanpa drama.”
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-200/70">
+            <div class="w-10 h-10 rounded-full bg-gold-600 text-white font-bold text-sm flex items-center justify-center shrink-0">
+              NA
+            </div>
+            <div>
+              <p class="text-sm font-bold text-syariah-950">Ibu Nurul Aini</p>
+              <p class="text-xs text-slate-500">Ibu Rumah Tangga • Bandung</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Testimoni 5 -->
+        <article class="reveal bg-slate-50/70 hover:bg-white rounded-3xl p-6 border border-syariah-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between" style="transition-delay: 80ms;">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-syariah-100 text-syariah-800 text-xs font-bold">
+                <i class="fa-solid fa-circle-check text-syariah-600"></i> Amanah Warisan &amp; Wakaf
+              </span>
+              <span class="text-xs font-extrabold text-gold-600 bg-gold-50 px-2.5 py-1 rounded-lg border border-gold-200">
+                Rp 500.000.000
+              </span>
+            </div>
+            <h3 class="text-base font-extrabold text-syariah-950 mb-2">Klaim Santunan Tutup Usia Syariah</h3>
+            <p class="text-sm text-slate-600 leading-relaxed italic mb-5">
+              “Terima kasih banyak Pak Andri yang dengan sabar membantu pengurusan berkas santunan almarhum suami kami hingga cair penuh untuk biaya pendidikan anak-anak dan penyaluran wakaf beliau.”
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-200/70">
+            <div class="w-10 h-10 rounded-full bg-syariah-700 text-white font-bold text-sm flex items-center justify-center shrink-0">
+              DK
+            </div>
+            <div>
+              <p class="text-sm font-bold text-syariah-950">Kel. Alm. Bpk. Dedi Kurniawan</p>
+              <p class="text-xs text-slate-500">Ahli Waris • Garut</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Testimoni 6 -->
+        <article class="reveal bg-slate-50/70 hover:bg-white rounded-3xl p-6 border border-syariah-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between" style="transition-delay: 160ms;">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-syariah-100 text-syariah-800 text-xs font-bold">
+                <i class="fa-solid fa-circle-check text-syariah-600"></i> Cashless Approved
+              </span>
+              <span class="text-xs font-extrabold text-gold-600 bg-gold-50 px-2.5 py-1 rounded-lg border border-gold-200">
+                Rp 64.200.000
+              </span>
+            </div>
+            <h3 class="text-base font-extrabold text-syariah-950 mb-2">Klaim Tindakan Kista &amp; Rawat Inap</h3>
+            <p class="text-sm text-slate-600 leading-relaxed italic mb-5">
+              “Awalnya ragu ikut asuransi, tapi setelah dijelaskan Syariah Concept oleh Pak Andri jadi mantap. Terbukti saat harus tindakan laparoskopi kista, seluruh biaya Rp 64,2 juta ditanggung penuh.”
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-200/70">
+            <div class="w-10 h-10 rounded-full bg-gold-600 text-white font-bold text-sm flex items-center justify-center shrink-0">
+              MK
+            </div>
+            <div>
+              <p class="text-sm font-bold text-syariah-950">Ibu Maya Kartika</p>
+              <p class="text-xs text-slate-500">Karyawan Swasta • Sumedang</p>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- 7. KONTAK & FORM KONSULTASI WHATSAPP LANGSUNG                         -->
+  <!-- ===================================================================== -->
+  <section id="kontak" class="py-16 sm:py-24 bg-gradient-to-b from-syariah-50 to-syariah-100/60 islamic-pattern-light border-t border-syariah-100">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        
+        <div class="reveal lg:col-span-5 space-y-6">
+          <span class="inline-block px-3.5 py-1 rounded-full bg-white text-syariah-700 border border-syariah-200 text-xs font-bold uppercase tracking-wider">
+            Hubungi Sekarang
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-syariah-950 leading-tight">
+            Mulai Langkah Kesiapan Finansial Keluarga Anda
+          </h2>
+          <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+            Jangan menunggu sampai sakit datang baru mencari perlindungan. Konsultasikan kebutuhan Anda secara gratis, ramah, dan tanpa kewajiban membeli bersama <strong class="text-syariah-900">Andri Andriansyah</strong>.
+          </p>
+
+          <div class="space-y-3.5">
+            <a href="https://wa.me/628112201321?text=Assalamu'alaikum%20Pak%20Andri%20Andriansyah,%20saya%20ingin%20berkonsultasi%20mengenai%20program%20Syariah%20Concept." target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 p-4 rounded-2xl bg-white hover:bg-syariah-50 border border-syariah-100 shadow-sm transition-all group">
+              <div class="w-12 h-12 rounded-2xl bg-syariah-600 text-white flex items-center justify-center text-2xl shrink-0 group-hover:scale-105 transition-transform">
+                <i class="fa-brands fa-whatsapp"></i>
+              </div>
+              <div>
+                <span class="block text-xs font-semibold text-slate-400">WhatsApp Fast Response</span>
+                <span class="block text-base sm:text-lg font-extrabold text-syariah-900">0811-2201-321</span>
+                <span class="block text-xs text-syariah-600 font-medium">Klik untuk chat langsung →</span>
+              </div>
+            </a>
+
+            <a href="mailto:andriardiansyah97@gmail.com?subject=Konsultasi%20Syariah%20Concept%20-%20Andri%20Andriansyah" class="flex items-center gap-4 p-4 rounded-2xl bg-white hover:bg-syariah-50 border border-syariah-100 shadow-sm transition-all group">
+              <div class="w-12 h-12 rounded-2xl bg-gold-500 text-white flex items-center justify-center text-xl shrink-0 group-hover:scale-105 transition-transform">
+                <i class="fa-solid fa-envelope"></i>
+              </div>
+              <div class="min-w-0">
+                <span class="block text-xs font-semibold text-slate-400">Email Resmi</span>
+                <span class="block text-sm sm:text-base font-extrabold text-syariah-900 truncate">andriardiansyah97@gmail.com</span>
+                <span class="block text-xs text-gold-600 font-medium">Kirim pertanyaan atau permintaan proposal →</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="reveal lg:col-span-7">
+          <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-xl shadow-syariah-900/5 border border-syariah-100">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-10 h-10 rounded-xl bg-syariah-100 text-syariah-700 flex items-center justify-center text-lg">
+                <i class="fa-solid fa-calendar-check"></i>
+              </div>
+              <div>
+                <h3 class="text-lg sm:text-xl font-extrabold text-syariah-950">Jadwalkan Konsultasi Gratis</h3>
+                <p class="text-xs text-slate-500">Isi data singkat di bawah, pesan akan otomatis terhubung ke WhatsApp Andri</p>
+              </div>
+            </div>
+
+            <form id="wa-consultation-form" class="space-y-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="client-name" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Nama Lengkap *</label>
+                  <input id="client-name" type="text" required placeholder="Contoh: Bpk. Ahmad Fauzi" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-syariah-600 focus:ring-2 focus:ring-syariah-500/20 outline-none text-sm transition-all" />
+                </div>
+                <div>
+                  <label for="client-city" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Kota / Domisili *</label>
+                  <input id="client-city" type="text" required placeholder="Contoh: Bandung / Jakarta" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-syariah-600 focus:ring-2 focus:ring-syariah-500/20 outline-none text-sm transition-all" />
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="client-age" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Usia Saat Ini (Opsional)</label>
+                  <input id="client-age" type="number" min="17" max="75" placeholder="Contoh: 32" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-syariah-600 focus:ring-2 focus:ring-syariah-500/20 outline-none text-sm transition-all" />
+                </div>
+                <div>
+                  <label for="client-topic" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Topik Konsultasi *</label>
+                  <select id="client-topic" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-syariah-600 focus:ring-2 focus:ring-syariah-500/20 outline-none text-sm bg-white transition-all">
+                    <option value="Proteksi Kesehatan Syariah (Kartu RS Cashless)">Proteksi Kesehatan Syariah (Kartu RS)</option>
+                    <option value="Deposito & Investasi Syariah">Deposito &amp; Investasi Syariah</option>
+                    <option value="Proteksi Sakit Kritis & Warisan Syariah">Proteksi Sakit Kritis &amp; Warisan Syariah</option>
+                    <option value="Review Polis Lama / Hijrah ke Syariah">Review Polis Lama / Hijrah ke Syariah</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label for="client-note" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Catatan Tambahan (Opsional)</label>
+                <textarea id="client-note" rows="3" placeholder="Tuliskan kebutuhan spesifik keluarga Anda atau waktu yang nyaman untuk dihubungi..." class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-syariah-600 focus:ring-2 focus:ring-syariah-500/20 outline-none text-sm transition-all"></textarea>
+              </div>
+
+              <button type="submit" class="w-full inline-flex items-center justify-center gap-3 py-4 px-6 rounded-2xl bg-gradient-to-r from-syariah-700 to-syariah-600 hover:from-syariah-800 hover:to-syariah-700 text-white font-extrabold text-sm sm:text-base shadow-lg shadow-syariah-700/25 transition-all transform hover:-translate-y-0.5 cursor-pointer">
+                <i class="fa-brands fa-whatsapp text-xl"></i>
+                <span>Kirim &amp; Konsultasi ke WhatsApp Andri</span>
+              </button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- 8. FOOTER                                                             -->
+  <!-- ===================================================================== -->
+  <footer class="bg-syariah-950 text-syariah-200 pt-14 pb-8 islamic-pattern">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 pb-10 border-b border-syariah-800/80">
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-xl bg-syariah-800 border border-syariah-700 flex items-center justify-center text-gold-400">
+              <i class="fa-solid fa-shield-halved text-lg"></i>
+            </div>
+            <div>
+              <h3 class="font-extrabold text-white text-lg leading-none">Andri Andriansyah</h3>
+              <span class="text-xs text-gold-400 font-semibold tracking-wider uppercase">Syariah Concept</span>
+            </div>
+          </div>
+          <p class="text-xs sm:text-sm text-syariah-300 leading-relaxed italic font-serif">
+            “Kita tidak pernah bisa memilih kapan sakit datang, tapi kita selalu bisa memilih seberapa siap kita menghadapinya.”
+          </p>
+        </div>
+
+        <div>
+          <h4 class="text-sm font-extrabold text-white uppercase tracking-wider mb-4">Menu Layanan</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="#beranda" class="hover:text-gold-400 transition-colors">Profil Andri Andriansyah</a></li>
+            <li><a href="#syariah-concept" class="hover:text-gold-400 transition-colors">Konsep Akad Syariah</a></li>
+            <li><a href="#video-edukasi" class="hover:text-gold-400 transition-colors">3 Video Edukasi Syariah</a></li>
+            <li><a href="#kalkulator" class="hover:text-gold-400 transition-colors">Kalkulator Deposito &amp; Investasi</a></li>
+            <li><a href="#testimoni" class="hover:text-gold-400 transition-colors">Bukti Klaim Nasabah</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-sm font-extrabold text-white uppercase tracking-wider mb-4">Kontak Langsung</h4>
+          <ul class="space-y-3 text-sm">
+            <li class="flex items-center gap-3">
+              <i class="fa-brands fa-whatsapp text-gold-400 text-base w-5"></i>
+              <a href="https://wa.me/628112201321" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">0811-2201-321</a>
+            </li>
+            <li class="flex items-center gap-3">
+              <i class="fa-solid fa-envelope text-gold-400 text-base w-5"></i>
+              <a href="mailto:andriardiansyah97@gmail.com" class="hover:text-white transition-colors break-all">andriardiansyah97@gmail.com</a>
+            </li>
+            <li class="flex items-center gap-3">
+              <i class="fa-solid fa-moon text-gold-400 text-base w-5"></i>
+              <span>Spesialis Proteksi &amp; Keuangan Syariah</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-syariah-400">
+        <p>&copy; <span id="current-year">2026</span> Andri Andriansyah — Syariah Concept. Hak Cipta Dilindungi.</p>
+        <p>Angka pada kalkulator bersifat simulasi edukatif perencanaan keuangan syariah.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================================================================== -->
+  <!-- 9. FLOATING WHATSAPP BUTTON                                           -->
+  <!-- ===================================================================== -->
+  <a href="https://wa.me/628112201321?text=Assalamu'alaikum%20Pak%20Andri%20Andriansyah,%20saya%20melihat%20website%20Syariah%20Concept%20dan%20ingin%20konsultasi." target="_blank" rel="noopener noreferrer" aria-label="Chat WhatsApp Andri Andriansyah" class="fixed bottom-5 right-5 z-40 group flex items-center gap-2.5 bg-syariah-600 hover:bg-syariah-700 text-white px-4 py-3.5 rounded-full shadow-2xl animate-pulse-glow transition-all duration-300">
+    <i class="fa-brands fa-whatsapp text-2xl"></i>
+    <span class="hidden sm:inline text-xs font-extrabold pr-1">Tanya Andri</span>
+  </a>
+
+  <!-- ===================================================================== -->
+  <!-- 10. MODAL PEMUTAR VIDEO ANIMASI INTERAKTIF                            -->
+  <!-- ===================================================================== -->
+  <div id="storyModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-syariah-950/90 backdrop-blur-md p-3 sm:p-6">
+    <div class="relative w-full max-w-3xl rounded-3xl bg-gradient-to-br from-syariah-950 via-syariah-900 to-teal-950 border border-gold-400/30 shadow-2xl overflow-hidden text-white flex flex-col">
+      <!-- Top Story Progress Bars (4 Segmen) -->
+      <div class="px-5 pt-4 pb-2 grid grid-cols-4 gap-2">
+        <div class="h-1.5 rounded-full bg-white/15 overflow-hidden">
+          <div id="prog-bar-0" class="h-full bg-gold-400 transition-all duration-100" style="width: 0%;"></div>
+        </div>
+        <div class="h-1.5 rounded-full bg-white/15 overflow-hidden">
+          <div id="prog-bar-1" class="h-full bg-gold-400 transition-all duration-100" style="width: 0%;"></div>
+        </div>
+        <div class="h-1.5 rounded-full bg-white/15 overflow-hidden">
+          <div id="prog-bar-2" class="h-full bg-gold-400 transition-all duration-100" style="width: 0%;"></div>
+        </div>
+        <div class="h-1.5 rounded-full bg-white/15 overflow-hidden">
+          <div id="prog-bar-3" class="h-full bg-gold-400 transition-all duration-100" style="width: 0%;"></div>
+        </div>
+      </div>
+
+      <!-- Top Header Controls -->
+      <div class="px-5 py-2.5 flex items-center justify-between border-b border-white/10">
+        <div class="flex items-center gap-3 min-w-0">
+          <div class="w-9 h-9 rounded-xl bg-gold-400/20 border border-gold-400/40 text-gold-400 flex items-center justify-center shrink-0">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <div class="min-w-0">
+            <p id="modalVideoTitle" class="text-xs sm:text-sm font-bold text-white truncate">Video 1: Kesehatan Syariah</p>
+            <p class="text-[11px] text-syariah-300">Andri Andriansyah • Syariah Concept</p>
+          </div>
+        </div>
+
+        <!-- Audio Visualizer & Close Controls -->
+        <div class="flex items-center gap-2 shrink-0">
+          <button id="toggleAudioBtn" type="button" onclick="toggleAudioMute()" title="Suara Musik Latar" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-xs font-semibold text-gold-300 transition cursor-pointer">
+            <div id="audioWaveBox" class="flex items-end gap-0.5 h-3.5">
+              <span class="audio-wave-bar w-0.5 h-full bg-gold-400 rounded-full" style="animation-delay: 0.0s;"></span>
+              <span class="audio-wave-bar w-0.5 h-full bg-gold-400 rounded-full" style="animation-delay: 0.2s;"></span>
+              <span class="audio-wave-bar w-0.5 h-full bg-gold-400 rounded-full" style="animation-delay: 0.4s;"></span>
+              <span class="audio-wave-bar w-0.5 h-full bg-gold-400 rounded-full" style="animation-delay: 0.1s;"></span>
+            </div>
+            <span id="audioBtnLabel" class="hidden sm:inline">Musik Aktif</span>
+          </button>
+
+          <button id="togglePlayPauseBtn" type="button" onclick="togglePlayPause()" title="Jeda / Lanjutkan" class="w-9 h-9 rounded-xl bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition cursor-pointer">
+            <i id="playPauseIcon" class="fa-solid fa-pause text-sm"></i>
+          </button>
+
+          <button type="button" onclick="closeStoryModal()" title="Tutup Video" class="w-9 h-9 rounded-xl bg-red-500/20 hover:bg-red-500/40 text-red-200 flex items-center justify-center transition cursor-pointer">
+            <i class="fa-solid fa-xmark text-base"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Animated Stage (Slide Content) -->
+      <div class="relative flex-1 min-h-[340px] sm:min-h-[380px] p-6 sm:p-10 flex flex-col justify-center islamic-pattern">
+        <button type="button" onclick="prevSlide()" aria-label="Slide Sebelumnya" class="absolute inset-y-0 left-0 w-1/5 z-10 cursor-pointer focus:outline-none"></button>
+        <button type="button" onclick="nextSlide()" aria-label="Slide Berikutnya" class="absolute inset-y-0 right-0 w-1/5 z-10 cursor-pointer focus:outline-none"></button>
+
+        <div id="slideStageContainer" class="relative z-20 max-w-2xl mx-auto text-center space-y-5 story-slide-enter"></div>
+      </div>
+
+      <!-- Running Text Ticker di Bagian Bawah Stage -->
+      <div class="bg-syariah-950/95 border-y border-gold-400/20 py-2 overflow-hidden">
+        <div id="modalTickerTrack" class="video-ticker-track text-xs text-gold-300 font-semibold">
+          <span class="px-6">&#9679; “Kita tidak pernah bisa memilih kapan resiko datang, tapi kita selalu bisa memilih seberapa siap kita menghadapinya” — Andri Andriansyah</span>
+          <span class="px-6">&#9679; “Kita tidak pernah bisa memilih kapan resiko datang, tapi kita selalu bisa memilih seberapa siap kita menghadapinya” — Andri Andriansyah</span>
+        </div>
+      </div>
+
+      <!-- Bottom Navigation & WhatsApp CTA -->
+      <div class="px-5 py-4 bg-syariah-950 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div class="flex items-center gap-2">
+          <button type="button" onclick="prevSlide()" class="px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-xs font-bold text-white transition cursor-pointer">
+            <i class="fa-solid fa-chevron-left mr-1"></i> Sebelumnya
+          </button>
+          <span id="slideCounterText" class="text-xs font-bold text-syariah-300 px-2">Slide 1 / 4</span>
+          <button type="button" onclick="nextSlide()" class="px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-xs font-bold text-white transition cursor-pointer">
+            Lanjut <i class="fa-solid fa-chevron-right ml-1"></i>
+          </button>
+        </div>
+
+        <a id="modalWaCta" href="https://wa.me/628112201321?text=Assalamu'alaikum%20Pak%20Andri%20Andriansyah,%20saya%20baru%20menonton%20video%20edukasi%20Syariah%20Concept%20dan%20ingin%20konsultasi%20gratis." target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-gold-400 to-gold-500 hover:from-gold-300 hover:to-gold-400 text-syariah-950 font-extrabold text-xs sm:text-sm shadow-lg transition">
+          <i class="fa-brands fa-whatsapp text-base"></i>
+          <span>Konsultasi Gratis via WA (0811-2201-321)</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- JAVASCRIPT INTERAKTIVITAS, 3 VIDEO EDUKASI & KALKULATOR               -->
+  <!-- ===================================================================== -->
+  <script>
+    const VIDEO_WA_NUMBER = '628112201321';
+    const SLIDE_DURATION_MS = 6000;
+
+    const VIDEO_STORIES = [
+      {
+        title: "Video 01 • Kesehatan Syariah (Health Protection)",
+        ticker: "Tabungan 100 Juta Habis Seketika di RS?! • Selamatkan Aset Keluarga dengan Akad Tabarru' Syariah • Andri Andriansyah (0811-2201-321)",
+        waText: "Assalamu'alaikum Pak Andri Andriansyah, saya tertarik membahas Video 1 tentang Proteksi Kesehatan Cashless Syariah agar tabungan tidak terkuras biaya RS.",
+        slides: [
+          {
+            badge: "01 / 04 • HOOK TAJAM",
+            badgeStyle: "bg-red-500/20 border-red-400/50 text-red-300",
+            icon: "fa-solid fa-sack-xmark",
+            iconBg: "bg-red-500/20 text-red-400 border-red-400/40",
+            headline: "“Punya tabungan 100 juta, tapi habis dalam seminggu cuma buat bayar rumah sakit?!”",
+            subtext: "Sayang banget! Kerja keras bertahun-tahun bisa lenyap seketika saat risiko sakit datang tanpa persiapan.",
+            highlightBox: "1x Tindakan Operasi Besar = Rp 80 Juta – Rp 250 Juta+"
+          },
+          {
+            badge: "02 / 04 • FAKTA MEDIS",
+            badgeStyle: "bg-amber-500/20 border-amber-400/50 text-amber-300",
+            icon: "fa-solid fa-arrow-trend-up",
+            iconBg: "bg-amber-500/20 text-amber-400 border-amber-400/40",
+            headline: "Inflasi Biaya Medis Naik Belasan Persen Setiap Tahun",
+            subtext: "Tanpa kartu rumah sakit yang tepat, dana pendidikan anak, pokok deposito, hingga modal usaha terpaksa dikorbankan.",
+            highlightBox: "Jangan biarkan biaya RS menyita masa depan keluarga Anda."
+          },
+          {
+            badge: "03 / 04 • SOLUSI SYARIAH CONCEPT",
+            badgeStyle: "bg-emerald-500/20 border-emerald-400/50 text-emerald-300",
+            icon: "fa-solid fa-hands-holding-circle",
+            iconBg: "bg-emerald-500/20 text-emerald-300 border-emerald-400/40",
+            headline: "Konsep Ta'awun: Saling Menolong Lewat Dana Tabarru'",
+            subtext: "Cukup sisihkan sebagian kecil dari bagi hasil atau penghasilan bulanan Anda untuk perlindungan maksimal yang halal.",
+            bullets: [
+              "Kartu RS Cashless Sesuai Tagihan",
+              "Akad Syariah Transparan & Bebas Riba",
+              "Tabungan & Deposito Utama Tetap Utuh 100%"
+            ]
+          },
+          {
+            badge: "04 / 04 • PESAN ANDRI ANDRIANSYAH",
+            badgeStyle: "bg-gold-500/20 border-gold-400/50 text-gold-300",
+            icon: "fa-solid fa-quote-left",
+            iconBg: "bg-gold-500/20 text-gold-400 border-gold-400/40",
+            headline: "“Kita tidak pernah bisa memilih kapan sakit datang, tapi kita selalu bisa memilih seberapa siap kita menghadapinya.”",
+            subtext: "Konsultasikan kebutuhan kartu kesehatan syariah keluarga Anda sekarang secara gratis.",
+            highlightBox: "Andri Andriansyah • WhatsApp: 0811-2201-321"
+          }
+        ]
+      },
+      {
+        title: "Video 02 • Jiwa, Warisan & Wakaf Polis Syariah",
+        ticker: "Jika Penghasilan Berhenti Hari Ini, Keluarga Bertahan Berapa Lama? • Warisan Halal + Wakaf Jariyah • Andri Andriansyah",
+        waText: "Assalamu'alaikum Pak Andri Andriansyah, saya baru menonton Video 2 tentang Dana Warisan Syariah & Wakaf Polis. Mohon bantu hitung kebutuhan keluarga saya.",
+        slides: [
+          {
+            badge: "01 / 04 • HOOK TAJAM",
+            badgeStyle: "bg-red-500/20 border-red-400/50 text-red-300",
+            icon: "fa-solid fa-hourglass-half",
+            iconBg: "bg-red-500/20 text-red-400 border-red-400/40",
+            headline: "“Jika hari ini penghasilan Anda berhenti selamanya, berapa bulan keluarga di rumah bisa bertahan hidup?”",
+            subtext: "Pertanyaan jujur untuk setiap pencari nafkah yang mencintai pasangan dan anak-anaknya.",
+            highlightBox: "Cicilan, biaya dapur, dan uang sekolah anak tetap berjalan setiap bulan."
+          },
+          {
+            badge: "02 / 04 • EDUKASI KONSEP",
+            badgeStyle: "bg-amber-500/20 border-amber-400/50 text-amber-300",
+            icon: "fa-solid fa-heart",
+            iconBg: "bg-amber-500/20 text-amber-400 border-amber-400/40",
+            headline: "Asuransi Jiwa Syariah Bukan untuk yang Pergi, Tapi untuk Mereka yang Melanjutkan Hidup",
+            subtext: "Bentuk cinta nyata agar pasangan tidak bingung membayar kewajiban dan anak-anak tetap kuliah sampai sarjana.",
+            highlightBox: "Cinta sejati memastikan keluarga tetap hidup bermartabat."
+          },
+          {
+            badge: "03 / 04 • KEUNGGULAN SYARIAH CONCEPT",
+            badgeStyle: "bg-emerald-500/20 border-emerald-400/50 text-emerald-300",
+            icon: "fa-solid fa-mosque",
+            iconBg: "bg-emerald-500/20 text-emerald-300 border-emerald-400/40",
+            headline: "Warisan Tunai Halal + Pahala Jariyah Wakaf Polis",
+            subtext: "Siapkan dana kelangsungan hidup keluarga sekaligus amal jariyah yang tidak terputus.",
+            bullets: [
+              "Santunan Tunai Ratusan Juta s.d. Miliaran Rupiah",
+              "Dana Pendidikan Anak Terjamin Aman",
+              "Fitur Wakaf Polis untuk Pahala Jariyah Abadi"
+            ]
+          },
+          {
+            badge: "04 / 04 • LANGKAH SELANJUTNYA",
+            badgeStyle: "bg-gold-500/20 border-gold-400/50 text-gold-300",
+            icon: "fa-solid fa-calculator",
+            iconBg: "bg-gold-500/20 text-gold-400 border-gold-400/40",
+            headline: "Berapa Nilai Warisan Syariah Ideal untuk Keluarga Anda?",
+            subtext: "Mari simulasikan secara personal, transparan, dan tanpa kewajiban membeli bersama Andri Andriansyah.",
+            highlightBox: "Konsultasi Gratis WA: 0811-2201-321"
+          }
+        ]
+      },
+      {
+        title: "Video 03 • Kombinasi Sakit Kritis + Income Protection",
+        ticker: "2 Tagihan Besar Saat Sakit Kritis Datang! • Tagihan RS + Tagihan Dapur Keluarga • Solusi Lengkap Syariah Concept",
+        waText: "Assalamu'alaikum Pak Andri Andriansyah, saya tertarik dengan Video 3 tentang Kombinasi Proteksi RS Cashless + Santunan Tunai Sakit Kritis Syariah.",
+        slides: [
+          {
+            badge: "01 / 04 • HOOK TAJAM",
+            badgeStyle: "bg-red-500/20 border-red-400/50 text-red-300",
+            icon: "fa-solid fa-triangle-exclamation",
+            iconBg: "bg-red-500/20 text-red-400 border-red-400/40",
+            headline: "“Saat sakit kritis seperti jantung atau stroke datang, ada DUA tagihan besar yang muncul bersamaan!”",
+            subtext: "Banyak keluarga hanya menyiapkan satu tameng, padahal risiko menyerang dari dua sisi sekaligus.",
+            highlightBox: "2 Risiko Besar Datang di Waktu yang Sama!"
+          },
+          {
+            badge: "02 / 04 • DUA TAGIHAN BESAR",
+            badgeStyle: "bg-amber-500/20 border-amber-400/50 text-amber-300",
+            icon: "fa-solid fa-file-invoice-dollar",
+            iconBg: "bg-amber-500/20 text-amber-400 border-amber-400/40",
+            headline: "1. Tagihan Rumah Sakit & 2. Tagihan Dapur di Rumah",
+            subtext: "Saat pencari nafkah harus istirahat total dan tidak bisa bekerja, listrik, sekolah anak, dan cicilan tetap menagih.",
+            highlightBox: "Kartu RS membayar dokter, tapi TIDAK memberi uang belanja bulanan."
+          },
+          {
+            badge: "03 / 04 • SOLUSI TERPADU SYARIAH",
+            badgeStyle: "bg-emerald-500/20 border-emerald-400/50 text-emerald-300",
+            icon: "fa-solid fa-shield-heart",
+            iconBg: "bg-emerald-500/20 text-emerald-300 border-emerald-400/40",
+            headline: "Padukan Proteksi Kesehatan + Santunan Tunai Sakit Kritis",
+            subtext: "Perlindungan ganda yang memastikan proses pemulihan tenang tanpa memikirkan beban ekonomi keluarga.",
+            bullets: [
+              "Biaya RS & Tindakan Dibayar Cashless",
+              "Santunan Tunai Cair Langsung ke Rekening Pribadi",
+              "Menopang Biaya Hidup Keluarga Selama Pemulihan"
+            ]
+          },
+          {
+            badge: "04 / 04 • SIAPKAN HARI INI",
+            badgeStyle: "bg-gold-500/20 border-gold-400/50 text-gold-300",
+            icon: "fa-solid fa-quote-left",
+            iconBg: "bg-gold-500/20 text-gold-400 border-gold-400/40",
+            headline: "“Kita tidak pernah bisa memilih kapan resiko datang, tapi kita selalu bisa memilih seberapa siap kita menghadapinya.”",
+            subtext: "Hubungi Andri Andriansyah untuk simulasi kombinasi proteksi syariah terbaik.",
+            highlightBox: "Andri Andriansyah • WhatsApp: 0811-2201-321"
+          }
+        ]
+      }
+    ];
+
+    let currentVideoIdx = 0;
+    let currentSlideIdx = 0;
+    let isPlaying = false;
+    let isMuted = false;
+    let slideElapsed = 0;
+    let timerInterval = null;
+    let synth = null;
+    let musicLoop = null;
+    let audioInitialized = false;
+
+    async function initAndStartMusic() {
+      if (isMuted) return;
+      try {
+        if (typeof Tone !== 'undefined') {
+          await Tone.start();
+          if (!audioInitialized) {
+            synth = new Tone.PolySynth(Tone.Synth, {
+              oscillator: { type: "sine" },
+              envelope: { attack: 0.4, decay: 0.6, sustain: 0.3, release: 1.5 },
+              volume: -16
+            }).toDestination();
+
+            const chords = [
+              ["D4", "F4", "A4"],
+              ["C4", "E4", "G4"],
+              ["Bb3", "D4", "F4"],
+              ["A3", "C#4", "E4"]
+            ];
+            let step = 0;
+            musicLoop = new Tone.Loop((time) => {
+              if (!isMuted && isPlaying && synth) {
+                synth.triggerAttackRelease(chords[step % chords.length], "2n", time);
+                step++;
+              }
+            }, "2n");
+            audioInitialized = true;
+          }
+          if (Tone.Transport.state !== 'started') {
+            Tone.Transport.start();
+          }
+          if (musicLoop && musicLoop.state !== 'started') {
+            musicLoop.start(0);
+          }
+        }
+      } catch (err) {
+        console.warn("Audio menunggu interaksi pengguna:", err);
+      }
+    }
+
+    function stopMusic() {
+      try {
+        if (typeof Tone !== 'undefined' && Tone.Transport.state === 'started') {
+          Tone.Transport.pause();
+        }
+      } catch (e) {}
+    }
+
+    function openStoryModal(videoIndex) {
+      currentVideoIdx = videoIndex;
+      currentSlideIdx = 0;
+      slideElapsed = 0;
+      isPlaying = true;
+
+      const video = VIDEO_STORIES[currentVideoIdx];
+      document.getElementById('modalVideoTitle').textContent = video.title;
+
+      const tickerEl = document.getElementById('modalTickerTrack');
+      tickerEl.innerHTML = `
+        <span class="px-6">&#9679; ${video.ticker}</span>
+        <span class="px-6">&#9679; ${video.ticker}</span>
+      `;
+
+      const waCta = document.getElementById('modalWaCta');
+      waCta.href = `https://wa.me/${VIDEO_WA_NUMBER}?text=${encodeURIComponent(video.waText)}`;
+
+      const modal = document.getElementById('storyModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.classList.add('overflow-hidden');
+
+      updatePlayPauseUI();
+      renderSlide();
+      startTimer();
+      initAndStartMusic();
+    }
+
+    function closeStoryModal() {
+      isPlaying = false;
+      clearInterval(timerInterval);
+      stopMusic();
+
+      const modal = document.getElementById('storyModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    function renderSlide() {
+      const video = VIDEO_STORIES[currentVideoIdx];
+      const slide = video.slides[currentSlideIdx];
+      const container = document.getElementById('slideStageContainer');
+
+      container.classList.remove('story-slide-enter');
+      void container.offsetWidth;
+      container.classList.add('story-slide-enter');
+
+      let extraHtml = '';
+      if (slide.bullets && slide.bullets.length > 0) {
+        extraHtml = `
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 text-left">
+            ${slide.bullets.map(b => `
+              <div class="p-3.5 rounded-2xl bg-white/10 border border-white/15 backdrop-blur-sm flex items-start gap-2.5">
+                <i class="fa-solid fa-circle-check text-gold-400 mt-0.5 shrink-0"></i>
+                <span class="text-xs sm:text-sm font-bold text-white leading-snug">${b}</span>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      } else if (slide.highlightBox) {
+        extraHtml = `
+          <div class="inline-block px-5 py-3 rounded-2xl bg-white/10 border border-gold-400/35 text-gold-300 font-bold text-xs sm:text-sm backdrop-blur-sm">
+            ${slide.highlightBox}
+          </div>
+        `;
+      }
+
+      container.innerHTML = `
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border text-[11px] font-extrabold tracking-wider uppercase ${slide.badgeStyle}">
+          <span>${slide.badge}</span>
+        </div>
+
+        <div class="mx-auto w-16 h-16 rounded-2xl border flex items-center justify-center text-2xl shadow-lg ${slide.iconBg}">
+          <i class="${slide.icon}"></i>
+        </div>
+
+        <h3 class="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-white leading-snug">
+          ${slide.headline}
+        </h3>
+
+        <p class="text-sm sm:text-base text-syariah-100/90 max-w-xl mx-auto leading-relaxed">
+          ${slide.subtext}
+        </p>
+
+        ${extraHtml}
+      `;
+
+      document.getElementById('slideCounterText').textContent = `Slide ${currentSlideIdx + 1} / ${video.slides.length}`;
+      updateProgressBars();
+    }
+
+    function updateProgressBars() {
+      const percent = Math.min(100, (slideElapsed / SLIDE_DURATION_MS) * 100);
+      for (let i = 0; i < 4; i++) {
+        const bar = document.getElementById(`prog-bar-${i}`);
+        if (!bar) continue;
+        if (i < currentSlideIdx) {
+          bar.style.width = '100%';
+        } else if (i === currentSlideIdx) {
+          bar.style.width = `${percent}%`;
+        } else {
+          bar.style.width = '0%';
+        }
+      }
+    }
+
+    function startTimer() {
+      clearInterval(timerInterval);
+      const tick = 50;
+      timerInterval = setInterval(() => {
+        if (!isPlaying) return;
+        slideElapsed += tick;
+        updateProgressBars();
+
+        if (slideElapsed >= SLIDE_DURATION_MS) {
+          nextSlide();
+        }
+      }, tick);
+    }
+
+    function nextSlide() {
+      const video = VIDEO_STORIES[currentVideoIdx];
+      slideElapsed = 0;
+      if (currentSlideIdx < video.slides.length - 1) {
+        currentSlideIdx++;
+        renderSlide();
+      } else {
+        if (currentVideoIdx < VIDEO_STORIES.length - 1) {
+          openStoryModal(currentVideoIdx + 1);
+        } else {
+          currentSlideIdx = 0;
+          renderSlide();
+        }
+      }
+    }
+
+    function prevSlide() {
+      slideElapsed = 0;
+      if (currentSlideIdx > 0) {
+        currentSlideIdx--;
+        renderSlide();
+      } else if (currentVideoIdx > 0) {
+        openStoryModal(currentVideoIdx - 1);
+      } else {
+        renderSlide();
+      }
+    }
+
+    function togglePlayPause() {
+      isPlaying = !isPlaying;
+      updatePlayPauseUI();
+      if (isPlaying && !isMuted) {
+        initAndStartMusic();
+      } else {
+        stopMusic();
+      }
+    }
+
+    function updatePlayPauseUI() {
+      const icon = document.getElementById('playPauseIcon');
+      const waveBox = document.getElementById('audioWaveBox');
+      if (isPlaying) {
+        icon.className = 'fa-solid fa-pause text-sm';
+        if (!isMuted) waveBox.classList.remove('audio-wave-paused');
+      } else {
+        icon.className = 'fa-solid fa-play text-sm ml-0.5';
+        waveBox.classList.add('audio-wave-paused');
+      }
+    }
+
+    function toggleAudioMute() {
+      isMuted = !isMuted;
+      const waveBox = document.getElementById('audioWaveBox');
+      const label = document.getElementById('audioBtnLabel');
+
+      if (isMuted) {
+        waveBox.classList.add('audio-wave-paused');
+        label.textContent = 'Musik Mati';
+        stopMusic();
+      } else {
+        if (isPlaying) waveBox.classList.remove('audio-wave-paused');
+        label.textContent = 'Musik Aktif';
+        if (isPlaying) initAndStartMusic();
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      const modal = document.getElementById('storyModal');
+      if (!modal || modal.classList.contains('hidden')) return;
+      if (e.key === 'Escape') closeStoryModal();
+      if (e.key === 'ArrowRight') nextSlide();
+      if (e.key === 'ArrowLeft') prevSlide();
+      if (e.key === ' ') {
+        e.preventDefault();
+        togglePlayPause();
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const WA_NUMBER = '628112201321';
+
+      // Set Tahun Dinamis di Footer
+      const yearEl = document.getElementById('current-year');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      // 1. OPENING SPLASH SCREEN CONTROLS
+      const openingSplash = document.getElementById('opening-splash');
+      const enterSiteBtn = document.getElementById('enter-site-btn');
+      const reopenQuoteBtn = document.getElementById('reopen-quote-btn');
+
+      document.body.classList.add('overflow-hidden');
+
+      function closeSplash() {
+        openingSplash.classList.add('hide-splash');
+        document.body.classList.remove('overflow-hidden');
+        setTimeout(() => {
+          triggerScrollReveal();
+        }, 300);
+      }
+
+      function openSplash() {
+        openingSplash.classList.remove('hide-splash');
+        document.body.classList.add('overflow-hidden');
+      }
+
+      enterSiteBtn.addEventListener('click', closeSplash);
+      if (reopenQuoteBtn) {
+        reopenQuoteBtn.addEventListener('click', openSplash);
+      }
+
+      // 2. MOBILE NAVIGATION MENU
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+        });
+      });
+
+      // 3. SCROLL REVEAL ANIMATION
+      const revealElements = document.querySelectorAll('.reveal');
+      
+      function triggerScrollReveal() {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('active');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12 });
+
+        revealElements.forEach(el => observer.observe(el));
+      }
+
+      // 4. FORMATTER RUPIAH & HELPER WHATSAPP
+      function formatRupiah(num) {
+        return 'Rp ' + Math.round(num).toLocaleString('id-ID');
+      }
+
+      function openWhatsAppWithMessage(message) {
+        const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`;
+        window.open(url, '_blank', 'noopener,noreferrer');
+      }
+
+      // 5. TAB SWITCHING UNTUK 3 KALKULATOR
+      const tabButtons = document.querySelectorAll('.calc-tab-btn');
+      const calcPanels = document.querySelectorAll('.calc-panel');
+
+      tabButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const target = btn.getAttribute('data-tab');
+
+          tabButtons.forEach(b => {
+            b.classList.remove('active', 'bg-syariah-700', 'text-white', 'shadow-lg', 'shadow-syariah-700/25');
+            b.classList.add('bg-white', 'text-slate-700', 'border', 'border-syariah-200');
+          });
+
+          btn.classList.add('active', 'bg-syariah-700', 'text-white', 'shadow-lg', 'shadow-syariah-700/25');
+          btn.classList.remove('bg-white', 'text-slate-700', 'border', 'border-syariah-200');
+
+          calcPanels.forEach(panel => {
+            if (panel.id === `panel-${target}`) {
+              panel.classList.remove('hidden');
+            } else {
+              panel.classList.add('hidden');
+            }
+          });
+        });
+      });
+
+      // KALKULATOR 1: SIMULASI DEPOSITO SYARIAH
+      const depAmountInput = document.getElementById('dep-amount');
+      const depAmountLabel = document.getElementById('dep-amount-label');
+      const depRateInput = document.getElementById('dep-rate');
+      const depRateLabel = document.getElementById('dep-rate-label');
+      const depTenorBtns = document.querySelectorAll('.dep-tenor-btn');
+
+      const depNetProfitEl = document.getElementById('dep-net-profit');
+      const depGrossProfitEl = document.getElementById('dep-gross-profit');
+      const depTotalEndEl = document.getElementById('dep-total-end');
+      const depRecEl = document.getElementById('dep-recommendation');
+      const depWaBtn = document.getElementById('dep-wa-btn');
+
+      let selectedDepTenor = 12;
+
+      function calculateDeposito() {
+        const principal = parseFloat(depAmountInput.value);
+        const annualRate = parseFloat(depRateInput.value) / 100;
+        const months = selectedDepTenor;
+
+        const grossProfit = principal * annualRate * (months / 12);
+        const tax = grossProfit * 0.20;
+        const netProfit = grossProfit - tax;
+        const totalEnd = principal + netProfit;
+        const monthlyNet = netProfit / months;
+
+        depAmountLabel.textContent = formatRupiah(principal);
+        depRateLabel.textContent = `${parseFloat(depRateInput.value).toFixed(2)}% p.a.`;
+        depGrossProfitEl.textContent = formatRupiah(grossProfit);
+        depNetProfitEl.textContent = formatRupiah(netProfit);
+        depTotalEndEl.textContent = formatRupiah(totalEnd);
+
+        depRecEl.textContent = `Jangan biarkan pokok deposito ${formatRupiah(principal)} Anda tergerus jika sewaktu-waktu terjadi risiko sakit! Cukup sisihkan sebagian kecil bagi hasil bersih Anda (sekitar ${formatRupiah(monthlyNet)}/bln) untuk memiliki Kartu Rumah Sakit Syariah Cashless, sehingga pokok dana Anda tetap utuh 100%.`;
+
+        return { principal, months, annualRatePercent: depRateInput.value, netProfit, totalEnd };
+      }
+
+      depAmountInput.addEventListener('input', calculateDeposito);
+      depRateInput.addEventListener('input', calculateDeposito);
+
+      depTenorBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          depTenorBtns.forEach(b => {
+            b.classList.remove('active', 'border-syariah-600', 'bg-syariah-700', 'text-white', 'shadow-sm');
+            b.classList.add('border-slate-200', 'bg-slate-50', 'text-slate-700');
+          });
+          btn.classList.add('active', 'border-syariah-600', 'bg-syariah-700', 'text-white', 'shadow-sm');
+          btn.classList.remove('border-slate-200', 'bg-slate-50', 'text-slate-700');
+
+          selectedDepTenor = parseInt(btn.getAttribute('data-tenor'), 10);
+          calculateDeposito();
+        });
+      });
+
+      depWaBtn.addEventListener('click', () => {
+        const res = calculateDeposito();
+        const msg = `Assalamu'alaikum Pak Andri Andriansyah, saya baru mencoba *Kalkulator Deposito Syariah* di website Anda:\n\n• Nominal Dana: ${formatRupiah(res.principal)}\n• Tenor: ${res.months} Bulan\n• Indikasi Bagi Hasil: ${res.annualRatePercent}% p.a.\n• Estimasi Bagi Hasil Bersih: ${formatRupiah(res.netProfit)}\n\nMohon saran strategi diversifikasi & proteksi Syariah Concept terbaik untuk dana saya.`;
+        openWhatsAppWithMessage(msg);
+      });
+
+      // KALKULATOR 2: INVESTASI SYARIAH
+      const invInitialInput = document.getElementById('inv-initial');
+      const invInitialLabel = document.getElementById('inv-initial-label');
+      const invMonthlyInput = document.getElementById('inv-monthly');
+      const invMonthlyLabel = document.getElementById('inv-monthly-label');
+      const invYearsInput = document.getElementById('inv-years');
+      const invYearsLabel = document.getElementById('inv-years-label');
+      const invProfileBtns = document.querySelectorAll('.inv-profile-btn');
+
+      const invTotalFutureEl = document.getElementById('inv-total-future');
+      const invTotalPrincipalEl = document.getElementById('inv-total-principal');
+      const invTotalGrowthEl = document.getElementById('inv-total-growth');
+      const invBarPrincipal = document.getElementById('inv-bar-principal');
+      const invBarGrowth = document.getElementById('inv-bar-growth');
+      const invRecEl = document.getElementById('inv-recommendation');
+      const invWaBtn = document.getElementById('inv-wa-btn');
+
+      let selectedInvRate = 9;
+
+      function calculateInvestasi() {
+        const initial = parseFloat(invInitialInput.value);
+        const monthly = parseFloat(invMonthlyInput.value);
+        const years = parseInt(invYearsInput.value, 10);
+        const annualRate = selectedInvRate / 100;
+        const monthlyRate = annualRate / 12;
+        const totalMonths = years * 12;
+
+        const futureInitial = initial * Math.pow(1 + monthlyRate, totalMonths);
+        const futureMonthly = monthlyRate > 0
+          ? monthly * ((Math.pow(1 + monthlyRate, totalMonths) - 1) / monthlyRate)
+          : monthly * totalMonths;
+
+        const totalFuture = futureInitial + futureMonthly;
+        const totalPrincipal = initial + (monthly * totalMonths);
+        const totalGrowth = Math.max(0, totalFuture - totalPrincipal);
+
+        const principalPercent = totalFuture > 0 ? Math.round((totalPrincipal / totalFuture) * 100) : 100;
+        const growthPercent = 100 - principalPercent;
+
+        invInitialLabel.textContent = formatRupiah(initial);
+        invMonthlyLabel.textContent = formatRupiah(monthly);
+        invYearsLabel.textContent = `${years} Tahun`;
+
+        invTotalFutureEl.textContent = formatRupiah(totalFuture);
+        invTotalPrincipalEl.textContent = formatRupiah(totalPrincipal);
+        invTotalGrowthEl.textContent = formatRupiah(totalGrowth);
+
+        invBarPrincipal.style.width = `${principalPercent}%`;
+        invBarGrowth.style.width = `${growthPercent}%`;
+
+        invRecEl.textContent = `Investasi syariah Anda berpotensi tumbuh menjadi ${formatRupiah(totalFuture)} dalam ${years} tahun. Agar target dana pendidikan/pensiun ini tidak gagal di tengah jalan akibat risiko sakit kritis atau pencari nafkah tutup usia, pagari aset Anda dengan fitur Payor Benefit (Pembebasan Setoran) Syariah.`;
+
+        return { initial, monthly, years, rate: selectedInvRate, totalFuture, totalPrincipal };
+      }
+
+      invInitialInput.addEventListener('input', calculateInvestasi);
+      invMonthlyInput.addEventListener('input', calculateInvestasi);
+      invYearsInput.addEventListener('input', calculateInvestasi);
+
+      invProfileBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          invProfileBtns.forEach(b => {
+            b.classList.remove('active', 'border-syariah-600', 'bg-syariah-700', 'text-white', 'shadow-sm');
+            b.classList.add('border-slate-200', 'bg-slate-50', 'text-slate-700');
+          });
+          btn.classList.add('active', 'border-syariah-600', 'bg-syariah-700', 'text-white', 'shadow-sm');
+          btn.classList.remove('border-slate-200', 'bg-slate-50', 'text-slate-700');
+
+          selectedInvRate = parseFloat(btn.getAttribute('data-rate'));
+          calculateInvestasi();
+        });
+      });
+
+      invWaBtn.addEventListener('click', () => {
+        const res = calculateInvestasi();
+        const msg = `Assalamu'alaikum Pak Andri Andriansyah, saya baru menghitung simulasi di *Kalkulator Investasi Syariah*:\n\n• Dana Awal: ${formatRupiah(res.initial)}\n• Setoran Bulanan: ${formatRupiah(res.monthly)}/bln\n• Jangka Waktu: ${res.years} Tahun (Target ~${res.rate}%/thn)\n• Estimasi Hasil Akhir: ${formatRupiah(res.totalFuture)}\n\nSaya ingin konsultasi bagaimana memagari rencana investasi & pendidikan/pensiun ini dengan proteksi Syariah Concept.`;
+        openWhatsAppWithMessage(msg);
+      });
+
+      // KALKULATOR 3: DANA DARURAT & PROTEKSI KESEHATAN SYARIAH
+      const proExpenseInput = document.getElementById('pro-expense');
+      const proExpenseLabel = document.getElementById('pro-expense-label');
+      const proDependentsInput = document.getElementById('pro-dependents');
+      const proDependentsLabel = document.getElementById('pro-dependents-label');
+      const proPlanBtns = document.querySelectorAll('.pro-plan-btn');
+
+      const proEmergencyFundEl = document.getElementById('pro-emergency-fund');
+      const proEmergencyMonthsEl = document.getElementById('pro-emergency-months');
+      const proCiFundEl = document.getElementById('pro-ci-fund');
+      const proBudgetEl = document.getElementById('pro-budget');
+      const proRecEl = document.getElementById('pro-recommendation');
+      const proWaBtn = document.getElementById('pro-wa-btn');
+
+      let selectedPlanName = '1 Bed (VIP)';
+
+      function calculateProteksi() {
+        const monthlyExpense = parseFloat(proExpenseInput.value);
+        const dependents = parseInt(proDependentsInput.value, 10);
+
+        const emergencyMonths = Math.min(12, 6 + (dependents - 1));
+        const emergencyFund = monthlyExpense * emergencyMonths;
+        const ciFund = monthlyExpense * 48;
+        const idealBudget = monthlyExpense * 0.10;
+
+        proExpenseLabel.textContent = formatRupiah(monthlyExpense);
+        proDependentsLabel.textContent = `${dependents} Orang`;
+
+        proEmergencyFundEl.textContent = formatRupiah(emergencyFund);
+        proEmergencyMonthsEl.textContent = `(${emergencyMonths}x pengeluaran bulanan)`;
+        proCiFundEl.textContent = formatRupiah(ciFund);
+        proBudgetEl.textContent = `${formatRupiah(idealBudget)} / bln`;
+
+        proRecEl.textContent = `Dengan pengeluaran ${formatRupiah(monthlyExpense)}/bulan dan ${dependents} tanggungan, prioritaskan Kartu Kesehatan Syariah Plan ${selectedPlanName} terlebih dahulu agar biaya rumah sakit tidak menyedot Dana Darurat ${formatRupiah(emergencyFund)} Anda. Saya siap buatkan ilustrasi resmi sesuai usia Anda.`;
+
+        return { monthlyExpense, dependents, selectedPlanName, emergencyFund, ciFund, idealBudget };
+      }
+
+      proExpenseInput.addEventListener('input', calculateProteksi);
+      proDependentsInput.addEventListener('input', calculateProteksi);
+
+      proPlanBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          proPlanBtns.forEach(b => {
+            b.classList.remove('active', 'border-syariah-600', 'bg-syariah-700', 'text-white', 'shadow-sm');
+            b.classList.add('border-slate-200', 'bg-slate-50', 'text-slate-700');
+          });
+          btn.classList.add('active', 'border-syariah-600', 'bg-syariah-700', 'text-white', 'shadow-sm');
+          btn.classList.remove('border-slate-200', 'bg-slate-50', 'text-slate-700');
+
+          selectedPlanName = btn.getAttribute('data-plan');
+          calculateProteksi();
+        });
+      });
+
+      proWaBtn.addEventListener('click', () => {
+        const res = calculateProteksi();
+        const msg = `Assalamu'alaikum Pak Andri Andriansyah, saya baru menghitung kebutuhan di *Kalkulator Dana Darurat & Proteksi Syariah*:\n\n• Pengeluaran Keluarga: ${formatRupiah(res.monthlyExpense)}/bln\n• Jumlah Tanggungan: ${res.dependents} Orang\n• Pilihan Plan Kamar RS: ${res.selectedPlanName}\n• Target Dana Darurat: ${formatRupiah(res.emergencyFund)}\n• Rekomendasi Plafon resiko Kritis: ${formatRupiah(res.ciFund)}\n\nMohon dibuatkan ilustrasi program Syariah Concept yang paling pas untuk keluarga saya.`;
+        openWhatsAppWithMessage(msg);
+      });
+
+      calculateDeposito();
+      calculateInvestasi();
+      calculateProteksi();
+
+      // FORM KONSULTASI WHATSAPP
+      const waForm = document.getElementById('wa-consultation-form');
+      waForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('client-name').value.trim();
+        const city = document.getElementById('client-city').value.trim();
+        const age = document.getElementById('client-age').value.trim();
+        const topic = document.getElementById('client-topic').value;
+        const note = document.getElementById('client-note').value.trim();
+
+        let message = `Assalamu'alaikum Pak Andri Andriansyah, perkenalkan saya ingin menjadwalkan konsultasi gratis *Syariah Concept*:\n\n`;
+        message += `• *Nama:* ${name}\n`;
+        message += `• *Domisili:* ${city}\n`;
+        if (age) message += `• *Usia:* ${age} Tahun\n`;
+        message += `• *Topik:* ${topic}\n`;
+        if (note) message += `• *Catatan:* ${note}\n`;
+        message += `\nMohon informasinya kapan waktu yang tepat untuk berdiskusi. Terima kasih.`;
+
+        openWhatsAppWithMessage(message);
+      });
+    });
+  </script>
+</body>
+</html>
