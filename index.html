@@ -420,7 +420,7 @@
               <div class="relative w-44 h-44 sm:w-52 sm:h-52 mx-auto mb-5">
                 <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-syariah-700 via-syariah-500 to-gold-400 p-1.5 shadow-lg">
                   <div class="w-full h-full rounded-full overflow-hidden bg-syariah-100">
-                    <img id="agent-profile-img" src="https://placehold.co/400x400/047857/ffffff?text=Andri+Andriansyah" alt="Foto Profil Andri Andriansyah - Agen Asuransi Syariah" class="w-full h-full object-cover object-top" />
+                    <img id="agent-profile-img" src="andri-profile.jpeg" alt="Foto Profil Andri Andriansyah - Agen Asuransi Syariah" class="w-full h-full object-cover object-top" />
                   </div>
                 </div>
               </div>
@@ -1382,7 +1382,10 @@
   <!-- ===================================================================== -->
   <!-- 10. MODAL PEMUTAR VIDEO ANIMASI INTERAKTIF                            -->
   <!-- ===================================================================== -->
-  <div id="storyModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-syariah-950/90 backdrop-blur-md p-3 sm:p-6">
+<audio id="bg-mp3-player" preload="auto" loop>
+  <source src="bgm-paradise.mp3" type="audio/mpeg">
+</audio>  
+<div id="storyModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-syariah-950/90 backdrop-blur-md p-3 sm:p-6">
     <div class="relative w-full max-w-3xl rounded-3xl bg-gradient-to-br from-syariah-950 via-syariah-900 to-teal-950 border border-gold-400/30 shadow-2xl overflow-hidden text-white flex flex-col">
       <!-- Top Story Progress Bars (4 Segmen) -->
       <div class="px-5 pt-4 pb-2 grid grid-cols-4 gap-2">
@@ -1631,50 +1634,23 @@
     let musicLoop = null;
     let audioInitialized = false;
 
-    async function initAndStartMusic() {
-      if (isMuted) return;
-      try {
-        if (typeof Tone !== 'undefined') {
-          await Tone.start();
-          if (!audioInitialized) {
-            synth = new Tone.PolySynth(Tone.Synth, {
-              oscillator: { type: "sine" },
-              envelope: { attack: 0.4, decay: 0.6, sustain: 0.3, release: 1.5 },
-              volume: -16
-            }).toDestination();
+    const bgAudioEl = document.getElementById('bg-mp3-player');
 
-            const chords = [
-              ["D4", "F4", "A4"],
-              ["C4", "E4", "G4"],
-              ["Bb3", "D4", "F4"],
-              ["A3", "C#4", "E4"]
-            ];
-            let step = 0;
-            musicLoop = new Tone.Loop((time) => {
-              if (!isMuted && isPlaying && synth) {
-                synth.triggerAttackRelease(chords[step % chords.length], "2n", time);
-                step++;
-              }
-            }, "2n");
-            audioInitialized = true;
-          }
-          if (Tone.Transport.state !== 'started') {
-            Tone.Transport.start();
-          }
-          if (musicLoop && musicLoop.state !== 'started') {
-            musicLoop.start(0);
-          }
-        }
+    async function initAndStartMusic() {
+      if (isMuted || !bgAudioEl) return;
+      try {
+        bgAudioEl.muted = false;
+        bgAudioEl.volume = 0.6;
+        await bgAudioEl.play();
       } catch (err) {
         console.warn("Audio menunggu interaksi pengguna:", err);
       }
     }
 
     function stopMusic() {
+      if (!bgAudioEl) return;
       try {
-        if (typeof Tone !== 'undefined' && Tone.Transport.state === 'started') {
-          Tone.Transport.pause();
-        }
+        bgAudioEl.pause();
       } catch (e) {}
     }
 
@@ -1855,14 +1831,20 @@
       const waveBox = document.getElementById('audioWaveBox');
       const label = document.getElementById('audioBtnLabel');
 
+      if (bgAudioEl) {
+        bgAudioEl.muted = isMuted;
+      }
+
       if (isMuted) {
         waveBox.classList.add('audio-wave-paused');
         label.textContent = 'Musik Mati';
         stopMusic();
       } else {
-        if (isPlaying) waveBox.classList.remove('audio-wave-paused');
+        if (isPlaying) {
+          waveBox.classList.remove('audio-wave-paused');
+          initAndStartMusic();
+        }
         label.textContent = 'Musik Aktif';
-        if (isPlaying) initAndStartMusic();
       }
     }
 
