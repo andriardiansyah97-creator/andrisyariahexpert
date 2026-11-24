@@ -110,17 +110,66 @@
     .splash-delay-2 { animation-delay: 0.5s; opacity: 0; }
     .splash-delay-3 { animation-delay: 0.8s; opacity: 0; }
 
-    /* Scroll Reveal Class */
+
+    /* Efek Scrolling Elegan untuk Mobile & PC */
     .reveal {
       opacity: 0;
-      transform: translateY(28px);
-      transition: all 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(32px) scale(0.97);
+      filter: blur(4px);
+      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                  filter 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform, filter;
     }
 
     .reveal.active {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0) scale(1);
+      filter: blur(0);
     }
+
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-28px);
+      transition: all 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal-left.active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(28px);
+      transition: all 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal-right.active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* Animasi 3 Ikon Wilayah Health Plan */
+    @keyframes regionIconFloat {
+      0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+      50% { transform: translateY(-4px) rotate(4deg) scale(1.08); }
+    }
+
+    @keyframes regionIconRing {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.45); }
+      50% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+    }
+
+    .region-icon-fx {
+      animation: regionIconFloat 3.2s ease-in-out infinite, regionIconRing 2.6s ease-in-out infinite;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .health-region-card:hover .region-icon-fx {
+      transform: scale(1.15) rotate(-5deg);
+    }
+
 
     /* Custom Range Slider */
     input[type="range"] {
@@ -206,6 +255,53 @@
     @keyframes playPulse {
       0%, 100% { box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.55); }
       50% { box-shadow: 0 0 0 14px rgba(251, 191, 36, 0); }
+    }
+
+
+    /* Efek Gliter Menyala Hijau Zamrud pada Foto Profil */
+    @keyframes emeraldGlitterGlow {
+      0%, 100% {
+        box-shadow: 0 0 18px rgba(16, 185, 129, 0.55), 0 0 38px rgba(5, 150, 105, 0.35), inset 0 0 12px rgba(110, 231, 183, 0.35);
+      }
+      50% {
+        box-shadow: 0 0 28px rgba(52, 211, 153, 0.9), 0 0 56px rgba(16, 185, 129, 0.6), inset 0 0 18px rgba(167, 243, 208, 0.6);
+      }
+    }
+
+    @keyframes glitterSparkle {
+      0%, 100% { transform: scale(0.75) rotate(0deg); opacity: 0.45; }
+      50% { transform: scale(1.25) rotate(45deg); opacity: 1; }
+    }
+
+    .emerald-glitter-ring {
+      animation: emeraldGlitterGlow 2.6s ease-in-out infinite;
+    }
+
+    .emerald-sparkle {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 9999px;
+      background: radial-gradient(circle, #ffffff 0%, #6ee7b7 45%, #10b981 100%);
+      box-shadow: 0 0 10px #34d399, 0 0 20px #10b981;
+      pointer-events: none;
+      animation: glitterSparkle 2s ease-in-out infinite;
+    }
+
+    /* Efek Berjalan Kanan ke Kiri pada Testimoni Klaim */
+    @keyframes testimoniMarquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .testimoni-marquee-track {
+      display: flex;
+      width: max-content;
+      animation: testimoniMarquee 36s linear infinite;
+    }
+
+    .testimoni-marquee-wrapper:hover .testimoni-marquee-track {
+      animation-play-state: paused;
     }
 
     .btn-play-pulse {
@@ -418,8 +514,12 @@
             <!-- Kartu Utama Profil -->
             <div class="relative bg-white rounded-3xl p-6 sm:p-8 shadow-2xl shadow-syariah-900/10 border border-syariah-100 text-center">
               <div class="relative w-44 h-44 sm:w-52 sm:h-52 mx-auto mb-5">
-                <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-syariah-700 via-syariah-500 to-gold-400 p-1.5 shadow-lg">
-                  <div class="w-full h-full rounded-full overflow-hidden bg-syariah-100">
+                <span class="emerald-sparkle -top-1 right-4" style="animation-delay: 0s;"></span>
+                <span class="emerald-sparkle top-8 -left-1" style="animation-delay: 0.5s; width: 8px; height: 8px;"></span>
+                <span class="emerald-sparkle bottom-4 -right-1" style="animation-delay: 1s; width: 9px; height: 9px;"></span>
+                <span class="emerald-sparkle -bottom-1 left-8" style="animation-delay: 1.5s; width: 7px; height: 7px;"></span>
+                <div class="emerald-glitter-ring absolute inset-0 rounded-full bg-gradient-to-tr from-emerald-700 via-emerald-400 to-teal-300 p-1.5">
+                  <div class="w-full h-full rounded-full overflow-hidden bg-emerald-950 ring-2 ring-emerald-300/60">
                     <img id="agent-profile-img" src="andri-profile.jpeg" alt="Foto Profil Andri Andriansyah - Agen Asuransi Syariah" class="w-full h-full object-cover object-top" />
                   </div>
                 </div>
@@ -711,15 +811,15 @@
           3 Kalkulator Syariah &amp; Rekomendasi Andri
         </h2>
         <p class="text-slate-600 text-sm sm:text-base">
-          Hitung potensi bagi hasil deposito syariah, pertumbuhan investasi masa depan, serta kebutuhan proteksi kesehatan keluarga Anda secara real-time.
+          Hitung kebutuhan dana pendidikan anak, pertumbuhan investasi masa depan, serta proteksi kesehatan keluarga Anda secara real-time.
         </p>
       </div>
 
       <!-- Tab Navigation untuk 3 Kalkulator -->
       <div class="reveal flex flex-wrap justify-center gap-2.5 sm:gap-3 mb-8" role="tablist">
-        <button type="button" data-tab="deposito" class="calc-tab-btn active flex items-center gap-2 px-5 py-3.5 rounded-2xl font-bold text-xs sm:text-sm bg-syariah-700 text-white shadow-lg shadow-syariah-700/25 transition-all cursor-pointer">
-          <i class="fa-solid fa-vault"></i>
-          <span>1. Kalkulator Deposito Syariah</span>
+        <button type="button" data-tab="pendidikan" class="calc-tab-btn active flex items-center gap-2 px-5 py-3.5 rounded-2xl font-bold text-xs sm:text-sm bg-syariah-700 text-white shadow-lg shadow-syariah-700/25 transition-all cursor-pointer">
+          <i class="fa-solid fa-graduation-cap"></i>
+          <span>1. Kalkulator Pendidikan Anak</span>
         </button>
         <button type="button" data-tab="investasi" class="calc-tab-btn flex items-center gap-2 px-5 py-3.5 rounded-2xl font-bold text-xs sm:text-sm bg-white text-slate-700 hover:bg-syariah-100 border border-syariah-200 transition-all cursor-pointer">
           <i class="fa-solid fa-chart-line"></i>
@@ -731,71 +831,82 @@
         </button>
       </div>
 
-      <!-- PANEL KALKULATOR 1: DEPOSITO SYARIAH (MUDHARABAH) -->
-      <div id="panel-deposito" class="calc-panel bg-white rounded-3xl shadow-xl shadow-syariah-900/5 border border-syariah-100 p-6 sm:p-10">
+      <!-- PANEL KALKULATOR 1: PENDIDIKAN ANAK SYARIAH -->
+      <div id="panel-pendidikan" class="calc-panel bg-white rounded-3xl shadow-xl shadow-syariah-900/5 border border-syariah-100 p-6 sm:p-10">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-6 mb-6 border-b border-slate-100">
           <div>
-            <span class="text-xs font-bold uppercase tracking-wider text-syariah-600">Simulasi Akad Mudharabah</span>
-            <h3 class="text-xl sm:text-2xl font-extrabold text-syariah-950">Kalkulator Deposito Syariah</h3>
+            <span class="text-xs font-bold uppercase tracking-wider text-syariah-600">Dana Masa Depan &amp; Kuliah Anak</span>
+            <h3 class="text-xl sm:text-2xl font-extrabold text-syariah-950">Kalkulator Pendidikan Anak</h3>
           </div>
-          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-syariah-50 text-syariah-700 text-xs font-bold">
-            <i class="fa-solid fa-percent"></i> Estimasi Nisbah Kompetitif
-          </span>
+          <div class="flex items-center gap-2 self-start sm:self-auto">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-syariah-50 text-syariah-700 text-xs font-bold">
+              <i class="fa-solid fa-graduation-cap"></i> Simulasi Inflasi Pendidikan
+            </span>
+            <button id="edu-reset-btn" type="button" title="Reset ke 0" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-red-50 text-slate-700 hover:text-red-600 border border-slate-200 hover:border-red-200 text-xs font-bold transition-colors cursor-pointer">
+              <i class="fa-solid fa-rotate-left"></i>
+              <span>Reset 0</span>
+            </button>
+          </div>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          <div class="lg:col-span-6 space-y-6">
+          <div class="lg:col-span-6 space-y-5">
             <div>
-              <div class="flex justify-between items-center mb-2">
-                <label for="dep-amount" class="text-sm font-bold text-slate-700">Nominal Penempatan Dana</label>
-                <span id="dep-amount-label" class="text-base font-extrabold text-syariah-700">Rp 100.000.000</span>
+              <div class="flex justify-between items-center mb-1.5">
+                <label for="edu-cost" class="text-sm font-bold text-slate-700">Estimasi Biaya Masuk Kuliah Saat Ini</label>
+                <span id="edu-cost-label" class="text-base font-extrabold text-syariah-700">Rp 150.000.000</span>
               </div>
-              <input id="dep-amount" type="range" min="10000000" max="2000000000" step="10000000" value="100000000" class="w-full" />
+              <input id="edu-cost" type="range" min="0" max="2000000000" step="10000000" value="150000000" class="w-full" />
               <div class="flex justify-between text-[11px] text-slate-400 mt-1">
-                <span>Rp 10 Juta</span>
+                <span>Rp 0</span>
                 <span>Rp 1 Miliar</span>
                 <span>Rp 2 Miliar</span>
               </div>
             </div>
 
             <div>
-              <label class="block text-sm font-bold text-slate-700 mb-2">Jangka Waktu Penempatan (Tenor)</label>
-              <div class="grid grid-cols-5 gap-2" id="dep-tenor-group">
-                <button type="button" data-tenor="1" class="dep-tenor-btn py-2.5 rounded-xl text-xs sm:text-sm font-bold border border-slate-200 bg-slate-50 text-slate-700 hover:bg-syariah-50 cursor-pointer">1 Bln</button>
-                <button type="button" data-tenor="3" class="dep-tenor-btn py-2.5 rounded-xl text-xs sm:text-sm font-bold border border-slate-200 bg-slate-50 text-slate-700 hover:bg-syariah-50 cursor-pointer">3 Bln</button>
-                <button type="button" data-tenor="6" class="dep-tenor-btn py-2.5 rounded-xl text-xs sm:text-sm font-bold border border-slate-200 bg-slate-50 text-slate-700 hover:bg-syariah-50 cursor-pointer">6 Bln</button>
-                <button type="button" data-tenor="12" class="dep-tenor-btn active py-2.5 rounded-xl text-xs sm:text-sm font-bold border border-syariah-600 bg-syariah-700 text-white shadow-sm cursor-pointer">12 Bln</button>
-                <button type="button" data-tenor="24" class="dep-tenor-btn py-2.5 rounded-xl text-xs sm:text-sm font-bold border border-slate-200 bg-slate-50 text-slate-700 hover:bg-syariah-50 cursor-pointer">24 Bln</button>
+              <div class="flex justify-between items-center mb-1.5">
+                <label for="edu-years" class="text-sm font-bold text-slate-700">Jangka Waktu Menuju Kuliah</label>
+                <span id="edu-years-label" class="text-base font-extrabold text-syariah-700">12 Tahun</span>
+              </div>
+              <input id="edu-years" type="range" min="0" max="20" step="1" value="12" class="w-full" />
+              <div class="flex justify-between text-[11px] text-slate-400 mt-1">
+                <span>0 Tahun</span>
+                <span>10 Tahun</span>
+                <span>20 Tahun</span>
               </div>
             </div>
 
             <div>
-              <div class="flex justify-between items-center mb-2">
-                <label for="dep-rate" class="text-sm font-bold text-slate-700">Indikasi Bagi Hasil (Equivalent Rate / Thn)</label>
-                <span id="dep-rate-label" class="text-base font-extrabold text-gold-600">5.5% p.a.</span>
+              <div class="flex justify-between items-center mb-1.5">
+                <label for="edu-current-fund" class="text-sm font-bold text-slate-700">Dana Pendidikan Sudah Tersedia</label>
+                <span id="edu-current-fund-label" class="text-base font-extrabold text-syariah-700">Rp 25.000.000</span>
               </div>
-              <input id="dep-rate" type="range" min="3.0" max="8.0" step="0.25" value="5.5" class="w-full" />
-              <div class="flex justify-between text-[11px] text-slate-400 mt-1">
-                <span>3.0% p.a.</span>
-                <span>5.5% p.a.</span>
-                <span>8.0% p.a.</span>
+              <input id="edu-current-fund" type="range" min="0" max="500000000" step="5000000" value="25000000" class="w-full" />
+            </div>
+
+            <div>
+              <div class="flex justify-between items-center mb-1.5">
+                <label for="edu-inflation" class="text-sm font-bold text-slate-700">Asumsi Inflasi Pendidikan &amp; Return Syariah</label>
+                <span id="edu-inflation-label" class="text-base font-extrabold text-gold-600">10% / thn</span>
               </div>
+              <input id="edu-inflation" type="range" min="0" max="15" step="1" value="10" class="w-full" />
             </div>
           </div>
 
           <div class="lg:col-span-6 flex flex-col justify-between space-y-5">
             <div class="bg-gradient-to-br from-syariah-900 to-syariah-800 text-white rounded-2xl p-6 shadow-lg">
-              <p class="text-xs uppercase tracking-wider text-syariah-300 font-semibold mb-1">Estimasi Bagi Hasil Bersih (Setelah Pajak 20%)</p>
-              <p id="dep-net-profit" class="text-2xl sm:text-3xl font-extrabold text-gold-400 mb-4">Rp 4.400.000</p>
-              
+              <p class="text-xs uppercase tracking-wider text-syariah-300 font-semibold mb-1">Estimasi Biaya Kuliah Saat Anak Masuk</p>
+              <p id="edu-future-cost" class="text-2xl sm:text-3xl font-extrabold text-gold-400 mb-4">Rp 470.761.000</p>
+
               <div class="grid grid-cols-2 gap-3 pt-4 border-t border-syariah-700/70 text-xs sm:text-sm">
                 <div>
-                  <span class="block text-syariah-300">Bagi Hasil Kotor</span>
-                  <span id="dep-gross-profit" class="font-bold text-white">Rp 5.500.000</span>
+                  <span class="block text-syariah-300">Selisih Dana yang Perlu Disiapkan</span>
+                  <span id="edu-gap" class="font-bold text-white">Rp 392.275.000</span>
                 </div>
                 <div>
-                  <span class="block text-syariah-300">Total Dana Akhir</span>
-                  <span id="dep-total-end" class="font-bold text-syariah-200">Rp 104.400.000</span>
+                  <span class="block text-syariah-300">Tabungan Rutin Ideal / Bulan</span>
+                  <span id="edu-monthly-saving" class="font-bold text-gold-300">Rp 1.443.000 / bln</span>
                 </div>
               </div>
             </div>
@@ -807,16 +918,16 @@
                 </div>
                 <div>
                   <h4 class="text-sm font-extrabold text-syariah-950 mb-1">Rekomendasi Andri Andriansyah:</h4>
-                  <p id="dep-recommendation" class="text-xs sm:text-sm text-slate-700 leading-relaxed">
-                    Jangan biarkan pokok deposito Anda tergerus jika sewaktu-waktu terjadi risiko sakit! Cukup alokasikan sebagian bagi hasil deposito (sekitar Rp 366.000/bln) untuk memiliki Kartu Rumah Sakit Syariah Cashless, sehingga pokok dana Rp 100 Juta Anda tetap utuh 100%.
+                  <p id="edu-recommendation" class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                    Biaya kuliah Rp 150 Juta hari ini diperkirakan menjadi Rp 470.761.000 dalam 12 tahun. Sisihkan sekitar Rp 1.443.000/bulan secara disiplin dan pastikan dilengkapi perlindungan Payor Benefit Syariah agar dana sekolah anak tetap cair penuh meski orang tua mengalami risiko sakit kritis atau tutup usia.
                   </p>
                 </div>
               </div>
             </div>
 
-            <button id="dep-wa-btn" type="button" class="w-full inline-flex items-center justify-center gap-2.5 py-3.5 px-6 rounded-2xl bg-syariah-700 hover:bg-syariah-800 text-white font-bold text-sm shadow-md transition-all cursor-pointer">
+            <button id="edu-wa-btn" type="button" class="w-full inline-flex items-center justify-center gap-2.5 py-3.5 px-6 rounded-2xl bg-syariah-700 hover:bg-syariah-800 text-white font-bold text-sm shadow-md transition-all cursor-pointer">
               <i class="fa-brands fa-whatsapp text-lg"></i>
-              <span>Konsultasikan Hasil Deposito Ini ke Andri</span>
+              <span>Konsultasikan Rencana Pendidikan Anak ke Andri</span>
             </button>
           </div>
         </div>
@@ -829,9 +940,15 @@
             <span class="text-xs font-bold uppercase tracking-wider text-syariah-600">Perencanaan Pendidikan &amp; Pensiun Berkah</span>
             <h3 class="text-xl sm:text-2xl font-extrabold text-syariah-950">Kalkulator Investasi Syariah</h3>
           </div>
-          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-syariah-50 text-syariah-700 text-xs font-bold">
-            <i class="fa-solid fa-seedling"></i> Compounding Syariah
-          </span>
+          <div class="flex items-center gap-2 self-start sm:self-auto">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-syariah-50 text-syariah-700 text-xs font-bold">
+              <i class="fa-solid fa-seedling"></i> Compounding Syariah
+            </span>
+            <button id="inv-reset-btn" type="button" title="Reset ke 0" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-red-50 text-slate-700 hover:text-red-600 border border-slate-200 hover:border-red-200 text-xs font-bold transition-colors cursor-pointer">
+              <i class="fa-solid fa-rotate-left"></i>
+              <span>Reset 0</span>
+            </button>
+          </div>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
@@ -841,7 +958,12 @@
                 <label for="inv-initial" class="text-sm font-bold text-slate-700">Dana Awal Investasi</label>
                 <span id="inv-initial-label" class="text-base font-extrabold text-syariah-700">Rp 20.000.000</span>
               </div>
-              <input id="inv-initial" type="range" min="0" max="500000000" step="5000000" value="20000000" class="w-full" />
+              <input id="inv-initial" type="range" min="0" max="5000000000" step="10000000" value="20000000" class="w-full" />
+              <div class="flex justify-between text-[11px] text-slate-400 mt-1">
+                <span>Rp 0</span>
+                <span>Rp 2,5 Miliar</span>
+                <span>Rp 5 Miliar</span>
+              </div>
             </div>
 
             <div>
@@ -849,7 +971,7 @@
                 <label for="inv-monthly" class="text-sm font-bold text-slate-700">Setoran Rutin per Bulan</label>
                 <span id="inv-monthly-label" class="text-base font-extrabold text-syariah-700">Rp 1.500.000</span>
               </div>
-              <input id="inv-monthly" type="range" min="250000" max="25000000" step="250000" value="1500000" class="w-full" />
+              <input id="inv-monthly" type="range" min="0" max="25000000" step="250000" value="1500000" class="w-full" />
             </div>
 
             <div>
@@ -857,7 +979,7 @@
                 <label for="inv-years" class="text-sm font-bold text-slate-700">Jangka Waktu Investasi</label>
                 <span id="inv-years-label" class="text-base font-extrabold text-syariah-700">10 Tahun</span>
               </div>
-              <input id="inv-years" type="range" min="1" max="30" step="1" value="10" class="w-full" />
+              <input id="inv-years" type="range" min="0" max="30" step="1" value="10" class="w-full" />
             </div>
 
             <div>
@@ -933,9 +1055,15 @@
             <span class="text-xs font-bold uppercase tracking-wider text-syariah-600">Benteng Finansial Keluarga</span>
             <h3 class="text-xl sm:text-2xl font-extrabold text-syariah-950">Kalkulator Dana Darurat &amp; Proteksi Syariah</h3>
           </div>
-          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-syariah-50 text-syariah-700 text-xs font-bold">
-            <i class="fa-solid fa-heart-pulse"></i> Standar Perencanaan Syariah
-          </span>
+          <div class="flex items-center gap-2 self-start sm:self-auto">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-syariah-50 text-syariah-700 text-xs font-bold">
+              <i class="fa-solid fa-heart-pulse"></i> Standar Perencanaan Syariah
+            </span>
+            <button id="pro-reset-btn" type="button" title="Reset ke 0" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-red-50 text-slate-700 hover:text-red-600 border border-slate-200 hover:border-red-200 text-xs font-bold transition-colors cursor-pointer">
+              <i class="fa-solid fa-rotate-left"></i>
+              <span>Reset 0</span>
+            </button>
+          </div>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
@@ -945,11 +1073,11 @@
                 <label for="pro-expense" class="text-sm font-bold text-slate-700">Pengeluaran Rutin Keluarga / Bulan</label>
                 <span id="pro-expense-label" class="text-base font-extrabold text-syariah-700">Rp 8.000.000</span>
               </div>
-              <input id="pro-expense" type="range" min="3000000" max="50000000" step="500000" value="8000000" class="w-full" />
+              <input id="pro-expense" type="range" min="0" max="500000000" step="1000000" value="8000000" class="w-full" />
               <div class="flex justify-between text-[11px] text-slate-400 mt-1">
-                <span>Rp 3 Juta</span>
-                <span>Rp 25 Juta</span>
-                <span>Rp 50 Juta</span>
+                <span>Rp 0</span>
+                <span>Rp 250 Juta</span>
+                <span>Rp 500 Juta</span>
               </div>
             </div>
 
@@ -958,28 +1086,15 @@
                 <label for="pro-dependents" class="text-sm font-bold text-slate-700">Jumlah Anggota Keluarga / Tanggungan</label>
                 <span id="pro-dependents-label" class="text-base font-extrabold text-syariah-700">3 Orang</span>
               </div>
-              <input id="pro-dependents" type="range" min="1" max="6" step="1" value="3" class="w-full" />
+              <input id="pro-dependents" type="range" min="0" max="6" step="1" value="3" class="w-full" />
               <div class="flex justify-between text-[11px] text-slate-400 mt-1">
-                <span>1 (Lajang)</span>
+                <span>0</span>
                 <span>3 (Keluarga Kecil)</span>
                 <span>6 (Keluarga Besar)</span>
               </div>
             </div>
 
-            <div>
-              <label class="block text-sm font-bold text-slate-700 mb-2">Preferensi Plan Kamar Rumah Sakit Syariah</label>
-              <div class="grid grid-cols-3 gap-2" id="pro-plan-group">
-                <button type="button" data-plan="2 Bed" data-multiplier="1" class="pro-plan-btn py-2.5 px-2 rounded-xl text-xs font-bold border border-slate-200 bg-slate-50 text-slate-700 hover:bg-syariah-50 cursor-pointer">
-                  Plan Silver<br><span class="font-normal">Kamar 2 Bed</span>
-                </button>
-                <button type="button" data-plan="1 Bed (VIP)" data-multiplier="1.35" class="pro-plan-btn active py-2.5 px-2 rounded-xl text-xs font-bold border border-syariah-600 bg-syariah-700 text-white shadow-sm cursor-pointer">
-                  Plan Gold<br><span class="font-normal text-gold-300">Kamar 1 Bed</span>
-                </button>
-                <button type="button" data-plan="Suite / Asia" data-multiplier="1.8" class="pro-plan-btn py-2.5 px-2 rounded-xl text-xs font-bold border border-slate-200 bg-slate-50 text-slate-700 hover:bg-syariah-50 cursor-pointer">
-                  Plan Platinum<br><span class="font-normal">1 Bed + Asia</span>
-                </button>
-              </div>
-            </div>
+
           </div>
 
           <div class="lg:col-span-6 flex flex-col justify-between space-y-5">
@@ -1011,7 +1126,7 @@
                 <div>
                   <h4 class="text-sm font-extrabold text-syariah-950 mb-1">Rekomendasi Andri Andriansyah:</h4>
                   <p id="pro-recommendation" class="text-xs sm:text-sm text-slate-700 leading-relaxed">
-                    Dengan pengeluaran Rp 8 Juta/bulan dan 3 tanggungan, prioritaskan Kartu Kesehatan Syariah Plan Gold (1 Bed) terlebih dahulu agar biaya rumah sakit tidak menyedot Dana Darurat Rp 72 Juta Anda. Saya siap buatkan ilustrasi resmi sesuai usia Anda.
+                    Dengan pengeluaran Rp 8 Juta/bulan dan 3 tanggungan, pilih wilayah Asia [Ex : Hongkong, Jepang, Singapore] (1 Bed 1 room / Standard Room) agar biaya rumah sakit tidak menyedot Dana Darurat Rp 72 Juta Anda. Saya siap buatkan ilustrasi resmi sesuai usia Anda.
                   </p>
                 </div>
               </div>
@@ -1025,15 +1140,110 @@
         </div>
       </div>
 
+      <!-- BAGIAN WILAYAH PERLINDUNGAN HEALTH PLAN (REFERENSI IMAGE 2 -> LINK KE IMAGE 3 FORM) -->
+      <div id="wilayah-health-plan" class="mt-14 pt-12 border-t border-syariah-200/80">
+        <div class="reveal text-center max-w-3xl mx-auto mb-10 space-y-2.5">
+          <span class="inline-block px-3.5 py-1 rounded-full bg-syariah-100 text-syariah-800 border border-syariah-200 text-xs font-bold uppercase tracking-wider">
+            Perlindungan Kesehatan Sesuai Tagihan
+          </span>
+          <h3 class="font-serif text-2xl sm:text-3xl font-bold text-syariah-950">
+            Pilih Wilayah Perlindungan Health Plan Anda
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-600">
+            Klik salah satu wilayah perlindungan di bawah ini. Pilihan Anda akan aktif otomatis dan langsung mengarah ke formulir konsultasi bersama Andri Andriansyah.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- 1. Indonesia -->
+          <div data-card-region="Indonesia" class="reveal health-region-card bg-white rounded-3xl p-6 border-2 border-syariah-100 hover:border-syariah-600 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-4">
+                <div class="region-icon-fx w-12 h-12 rounded-2xl bg-syariah-50 border border-syariah-200 flex items-center justify-center shadow-sm" title="Bendera Indonesia">
+                  <svg class="w-7 h-5 rounded-[3px] shadow-sm border border-slate-200 overflow-hidden" viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg" aria-label="Bendera Indonesia">
+                    <rect width="30" height="10" y="0" fill="#CE1126"/>
+                    <rect width="30" height="10" y="10" fill="#FFFFFF"/>
+                  </svg>
+                </div>
+                <span class="region-badge px-3 py-1 rounded-full bg-syariah-50 text-syariah-700 text-xs font-bold">Plan Nasional</span>
+              </div>
+              <h4 class="region-title font-serif text-xl font-bold text-syariah-950 mb-2">1. Indonesia</h4>
+              <p class="region-desc text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
+                Perlindungan rawat inap, pembedahan, dan perawatan medis komprehensif sesuai tagihan (<em>as charged</em>) di rumah sakit rekanan Indonesia.
+              </p>
+              <ul class="region-list space-y-2 text-xs text-slate-700 mb-6">
+                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-syariah-600 mt-0.5"></i><span><strong>1 Bed 1 room / Standard Room</strong></span></li>
+                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-syariah-600 mt-0.5"></i><span>Sistem <em>Cashless</em> di RS Rekanan Nasional</span></li>
+                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-syariah-600 mt-0.5"></i><span>Perawatan Sebelum &amp; Sesudah Rawat Inap</span></li>
+              </ul>
+            </div>
+            <button type="button" data-region="Indonesia" data-topic="Proteksi Kesehatan Syariah (Kartu RS Cashless)" class="select-region-btn w-full py-3 px-4 rounded-2xl bg-syariah-50 hover:bg-syariah-700 text-syariah-900 hover:text-white border border-syariah-200 font-bold text-xs sm:text-sm transition-all cursor-pointer">
+              Pilih Indonesia
+            </button>
+          </div>
+
+          <!-- 2. Asia [Ex : Hongkong, Jepang, Singapore] -->
+          <div data-card-region="Asia [Ex : Hongkong, Jepang, Singapore]" class="reveal health-region-card relative bg-white rounded-3xl p-6 border-2 border-syariah-100 hover:border-syariah-700 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between" style="transition-delay: 100ms;">
+            <span class="absolute -top-3 right-5 px-3 py-0.5 rounded-full bg-gold-500 text-syariah-950 text-[10px] font-extrabold uppercase tracking-wider shadow">
+              Paling Diminati
+            </span>
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-4">
+                <div class="region-icon-fx w-12 h-12 rounded-2xl bg-syariah-100 text-syariah-800 flex items-center justify-center text-lg shadow-sm">
+                  <i class="fa-solid fa-plane-departure"></i>
+                </div>
+                <span class="region-badge px-3 py-1 rounded-full bg-syariah-50 text-syariah-700 text-xs font-bold">Plan Regional</span>
+              </div>
+              <h4 class="region-title font-serif text-xl font-bold text-syariah-950 mb-2">2. Asia [Ex : Hongkong, Jepang, Singapore]</h4>
+              <p class="region-desc text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
+                Akses pengobatan lintas negara Asia (kecuali Hongkong, Jepang, Singapore) dengan standar medis internasional dan limit tahunan besar.
+              </p>
+              <ul class="region-list space-y-2 text-xs text-slate-700 mb-6">
+                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-syariah-600 mt-0.5"></i><span><strong>1 Bed 1 room / Standard Room</strong></span></li>
+                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-syariah-600 mt-0.5"></i><span>Mencakup Indonesia + Asia [Ex : Hongkong, Jepang, Singapore]</span></li>
+                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-syariah-600 mt-0.5"></i><span>Termasuk Terapi Kanker &amp; Cuci Darah</span></li>
+              </ul>
+            </div>
+            <button type="button" data-region="Asia [Ex : Hongkong, Jepang, Singapore]" data-topic="Proteksi Kesehatan Syariah (Kartu RS Cashless)" class="select-region-btn w-full py-3 px-4 rounded-2xl bg-syariah-50 hover:bg-syariah-800 text-syariah-900 hover:text-white border border-syariah-200 font-bold text-xs sm:text-sm transition-all cursor-pointer">
+              Pilih Asia [Ex : Hongkong, Jepang, Singapore]
+            </button>
+          </div>
+
+          <!-- 3. World Wide [Ex : USA] -->
+          <div data-card-region="World Wide [Ex : USA]" class="reveal health-region-card bg-white rounded-3xl p-6 border-2 border-syariah-100 hover:border-syariah-600 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between" style="transition-delay: 200ms;">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-4">
+                <div class="region-icon-fx w-12 h-12 rounded-2xl bg-syariah-100 text-syariah-800 flex items-center justify-center text-lg shadow-sm">
+                  <i class="fa-solid fa-globe"></i>
+                </div>
+                <span class="region-badge px-3 py-1 rounded-full bg-syariah-50 text-syariah-700 text-xs font-bold">Plan Eksklusif</span>
+              </div>
+              <h4 class="region-title font-serif text-xl font-bold text-syariah-950 mb-2">3. World Wide [Ex : USA]</h4>
+              <p class="region-desc text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
+                Perlindungan medis global komprehensif dengan cakupan internasional (kecuali USA) untuk ketenangan maksimal keluarga.
+              </p>
+              <ul class="region-list space-y-2 text-xs text-slate-700 mb-6">
+                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-syariah-600 mt-0.5"></i><span><strong>1 Bed 1 room / Standard Room</strong></span></li>
+                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-syariah-600 mt-0.5"></i><span>Cover Global : <strong>World Wide [Ex : USA]</strong></span></li>
+                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-syariah-600 mt-0.5"></i><span>Layanan Pendampingan Medis &amp; Klaim</span></li>
+              </ul>
+            </div>
+            <button type="button" data-region="World Wide [Ex : USA]" data-topic="Proteksi Kesehatan Syariah (Kartu RS Cashless)" class="select-region-btn w-full py-3 px-4 rounded-2xl bg-syariah-50 hover:bg-syariah-700 text-syariah-900 hover:text-white border border-syariah-200 font-bold text-xs sm:text-sm transition-all cursor-pointer">
+              Pilih World Wide [Ex : USA]
+            </button>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
   <!-- ===================================================================== -->
   <!-- 6. 6 TESTIMONI KLAIM NASABAH                                          -->
   <!-- ===================================================================== -->
-  <section id="testimoni" class="py-16 sm:py-24 bg-white">
+  <section id="testimoni" class="py-16 sm:py-24 bg-white overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="reveal text-center max-w-3xl mx-auto mb-14">
+      <div class="reveal text-center max-w-3xl mx-auto mb-12">
         <span class="inline-block px-3.5 py-1 rounded-full bg-syariah-50 text-syariah-700 border border-syariah-200 text-xs font-bold uppercase tracking-wider mb-3">
           Bukti Nyata Pelayanan &amp; Amanah
         </span>
@@ -1041,14 +1251,14 @@
           6 Cerita &amp; Testimoni Klaim Nasabah
         </h2>
         <p class="text-slate-600 text-sm sm:text-base">
-          Kepercayaan nasabah adalah prioritas utama. Berikut pengalaman para nasabah yang telah terbantu saat proses klaim rawat inap, tindakan operasi, sakit kritis, hingga santunan warisan syariah.
+          Kepercayaan nasabah adalah prioritas utama. Arahkan kursor ke kartu untuk menjeda sementara testimoni yang berjalan dari kanan ke kiri.
         </p>
       </div>
+    </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        
-        <!-- Testimoni 1 -->
-        <article class="reveal bg-slate-50/70 hover:bg-white rounded-3xl p-6 border border-syariah-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+    <div class="testimoni-marquee-wrapper relative w-full overflow-hidden py-3">
+      <div class="testimoni-marquee-track gap-6 px-3">
+        <article class="w-[310px] sm:w-[360px] shrink-0 bg-slate-50/90 hover:bg-white rounded-3xl p-6 border border-syariah-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between gap-2 mb-4">
               <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-syariah-100 text-syariah-800 text-xs font-bold">
@@ -1064,9 +1274,7 @@
             </p>
           </div>
           <div class="flex items-center gap-3 pt-4 border-t border-slate-200/70">
-            <div class="w-10 h-10 rounded-full bg-syariah-700 text-white font-bold text-sm flex items-center justify-center shrink-0">
-              HW
-            </div>
+            <div class="w-10 h-10 rounded-full bg-syariah-700 text-white font-bold text-sm flex items-center justify-center shrink-0">HW</div>
             <div>
               <p class="text-sm font-bold text-syariah-950">Bpk. Hendra Wijaya</p>
               <p class="text-xs text-slate-500">Nasabah • Bandung</p>
@@ -1074,8 +1282,7 @@
           </div>
         </article>
 
-        <!-- Testimoni 2 -->
-        <article class="reveal bg-slate-50/70 hover:bg-white rounded-3xl p-6 border border-syariah-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between" style="transition-delay: 80ms;">
+        <article class="w-[310px] sm:w-[360px] shrink-0 bg-slate-50/90 hover:bg-white rounded-3xl p-6 border border-syariah-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between gap-2 mb-4">
               <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-syariah-100 text-syariah-800 text-xs font-bold">
@@ -1091,9 +1298,7 @@
             </p>
           </div>
           <div class="flex items-center gap-3 pt-4 border-t border-slate-200/70">
-            <div class="w-10 h-10 rounded-full bg-gold-600 text-white font-bold text-sm flex items-center justify-center shrink-0">
-              SR
-            </div>
+            <div class="w-10 h-10 rounded-full bg-gold-600 text-white font-bold text-sm flex items-center justify-center shrink-0">SR</div>
             <div>
               <p class="text-sm font-bold text-syariah-950">Ibu Siti Rahmawati</p>
               <p class="text-xs text-slate-500">Nasabah • Cimahi</p>
@@ -1101,8 +1306,7 @@
           </div>
         </article>
 
-        <!-- Testimoni 3 -->
-        <article class="reveal bg-slate-50/70 hover:bg-white rounded-3xl p-6 border border-syariah-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between" style="transition-delay: 160ms;">
+        <article class="w-[310px] sm:w-[360px] shrink-0 bg-slate-50/90 hover:bg-white rounded-3xl p-6 border border-syariah-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between gap-2 mb-4">
               <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-syariah-100 text-syariah-800 text-xs font-bold">
@@ -1118,9 +1322,7 @@
             </p>
           </div>
           <div class="flex items-center gap-3 pt-4 border-t border-slate-200/70">
-            <div class="w-10 h-10 rounded-full bg-syariah-700 text-white font-bold text-sm flex items-center justify-center shrink-0">
-              RK
-            </div>
+            <div class="w-10 h-10 rounded-full bg-syariah-700 text-white font-bold text-sm flex items-center justify-center shrink-0">RK</div>
             <div>
               <p class="text-sm font-bold text-syariah-950">Bpk. Ridwan Kamiludin</p>
               <p class="text-xs text-slate-500">Pengusaha • Jakarta</p>
@@ -1128,8 +1330,7 @@
           </div>
         </article>
 
-        <!-- Testimoni 4 -->
-        <article class="reveal bg-slate-50/70 hover:bg-white rounded-3xl p-6 border border-syariah-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+        <article class="w-[310px] sm:w-[360px] shrink-0 bg-slate-50/90 hover:bg-white rounded-3xl p-6 border border-syariah-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between gap-2 mb-4">
               <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-syariah-100 text-syariah-800 text-xs font-bold">
@@ -1145,9 +1346,7 @@
             </p>
           </div>
           <div class="flex items-center gap-3 pt-4 border-t border-slate-200/70">
-            <div class="w-10 h-10 rounded-full bg-gold-600 text-white font-bold text-sm flex items-center justify-center shrink-0">
-              NA
-            </div>
+            <div class="w-10 h-10 rounded-full bg-gold-600 text-white font-bold text-sm flex items-center justify-center shrink-0">NA</div>
             <div>
               <p class="text-sm font-bold text-syariah-950">Ibu Nurul Aini</p>
               <p class="text-xs text-slate-500">Ibu Rumah Tangga • Bandung</p>
@@ -1155,8 +1354,7 @@
           </div>
         </article>
 
-        <!-- Testimoni 5 -->
-        <article class="reveal bg-slate-50/70 hover:bg-white rounded-3xl p-6 border border-syariah-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between" style="transition-delay: 80ms;">
+        <article class="w-[310px] sm:w-[360px] shrink-0 bg-slate-50/90 hover:bg-white rounded-3xl p-6 border border-syariah-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between gap-2 mb-4">
               <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-syariah-100 text-syariah-800 text-xs font-bold">
@@ -1172,9 +1370,7 @@
             </p>
           </div>
           <div class="flex items-center gap-3 pt-4 border-t border-slate-200/70">
-            <div class="w-10 h-10 rounded-full bg-syariah-700 text-white font-bold text-sm flex items-center justify-center shrink-0">
-              DK
-            </div>
+            <div class="w-10 h-10 rounded-full bg-syariah-700 text-white font-bold text-sm flex items-center justify-center shrink-0">DK</div>
             <div>
               <p class="text-sm font-bold text-syariah-950">Kel. Alm. Bpk. Dedi Kurniawan</p>
               <p class="text-xs text-slate-500">Ahli Waris • Garut</p>
@@ -1182,8 +1378,7 @@
           </div>
         </article>
 
-        <!-- Testimoni 6 -->
-        <article class="reveal bg-slate-50/70 hover:bg-white rounded-3xl p-6 border border-syariah-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between" style="transition-delay: 160ms;">
+        <article class="w-[310px] sm:w-[360px] shrink-0 bg-slate-50/90 hover:bg-white rounded-3xl p-6 border border-syariah-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between gap-2 mb-4">
               <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-syariah-100 text-syariah-800 text-xs font-bold">
@@ -1199,16 +1394,156 @@
             </p>
           </div>
           <div class="flex items-center gap-3 pt-4 border-t border-slate-200/70">
-            <div class="w-10 h-10 rounded-full bg-gold-600 text-white font-bold text-sm flex items-center justify-center shrink-0">
-              MK
-            </div>
+            <div class="w-10 h-10 rounded-full bg-gold-600 text-white font-bold text-sm flex items-center justify-center shrink-0">MK</div>
             <div>
               <p class="text-sm font-bold text-syariah-950">Ibu Maya Kartika</p>
               <p class="text-xs text-slate-500">Karyawan Swasta • Sumedang</p>
             </div>
           </div>
         </article>
+        <article class="w-[310px] sm:w-[360px] shrink-0 bg-slate-50/90 hover:bg-white rounded-3xl p-6 border border-syariah-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-syariah-100 text-syariah-800 text-xs font-bold">
+                <i class="fa-solid fa-circle-check text-syariah-600"></i> Cashless Approved
+              </span>
+              <span class="text-xs font-extrabold text-gold-600 bg-gold-50 px-2.5 py-1 rounded-lg border border-gold-200">
+                Rp 28.500.000
+              </span>
+            </div>
+            <h3 class="text-base font-extrabold text-syariah-950 mb-2">Klaim Rawat Inap DBD &amp; Tifus</h3>
+            <p class="text-sm text-slate-600 leading-relaxed italic mb-5">
+              “Alhamdulillah, saat saya dirawat 6 hari karena DBD dan tifus, masuk RS langsung pakai kartu cashless tanpa keluar deposit sepeser pun. Mas Andri sigap memantau administrasi sampai saya pulang.”
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-200/70">
+            <div class="w-10 h-10 rounded-full bg-syariah-700 text-white font-bold text-sm flex items-center justify-center shrink-0">HW</div>
+            <div>
+              <p class="text-sm font-bold text-syariah-950">Bpk. Hendra Wijaya</p>
+              <p class="text-xs text-slate-500">Nasabah • Bandung</p>
+            </div>
+          </div>
+        </article>
 
+        <article class="w-[310px] sm:w-[360px] shrink-0 bg-slate-50/90 hover:bg-white rounded-3xl p-6 border border-syariah-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-syariah-100 text-syariah-800 text-xs font-bold">
+                <i class="fa-solid fa-circle-check text-syariah-600"></i> Klaim Terbayar 100%
+              </span>
+              <span class="text-xs font-extrabold text-gold-600 bg-gold-50 px-2.5 py-1 rounded-lg border border-gold-200">
+                Rp 42.000.000
+              </span>
+            </div>
+            <h3 class="text-base font-extrabold text-syariah-950 mb-2">Klaim Operasi Usus Buntu Akut</h3>
+            <p class="text-sm text-slate-600 leading-relaxed italic mb-5">
+              “Tindakan operasi mendadak tengah malam, panik sekali rasanya. Untung langsung hubungi Pak Andri, dibantu koordinasi ke bagian penjaminan RS sehingga semua tagihan Rp 42 juta beres sesuai tagihan.”
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-200/70">
+            <div class="w-10 h-10 rounded-full bg-gold-600 text-white font-bold text-sm flex items-center justify-center shrink-0">SR</div>
+            <div>
+              <p class="text-sm font-bold text-syariah-950">Ibu Siti Rahmawati</p>
+              <p class="text-xs text-slate-500">Nasabah • Cimahi</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="w-[310px] sm:w-[360px] shrink-0 bg-slate-50/90 hover:bg-white rounded-3xl p-6 border border-syariah-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-syariah-100 text-syariah-800 text-xs font-bold">
+                <i class="fa-solid fa-circle-check text-syariah-600"></i> Santunan Tunai Cair
+              </span>
+              <span class="text-xs font-extrabold text-gold-600 bg-gold-50 px-2.5 py-1 rounded-lg border border-gold-200">
+                Rp 350.000.000
+              </span>
+            </div>
+            <h3 class="text-base font-extrabold text-syariah-950 mb-2">Klaim Sakit Kritis Jantung</h3>
+            <p class="text-sm text-slate-600 leading-relaxed italic mb-5">
+              “Saat didiagnosis penyumbatan jantung dan harus istirahat total dari usaha, santunan sakit kritis syariah cair cepat. Dana ini benar-benar menyelamatkan biaya hidup keluarga dan operasional toko kami.”
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-200/70">
+            <div class="w-10 h-10 rounded-full bg-syariah-700 text-white font-bold text-sm flex items-center justify-center shrink-0">RK</div>
+            <div>
+              <p class="text-sm font-bold text-syariah-950">Bpk. Ridwan Kamiludin</p>
+              <p class="text-xs text-slate-500">Pengusaha • Jakarta</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="w-[310px] sm:w-[360px] shrink-0 bg-slate-50/90 hover:bg-white rounded-3xl p-6 border border-syariah-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-syariah-100 text-syariah-800 text-xs font-bold">
+                <i class="fa-solid fa-circle-check text-syariah-600"></i> Cashless Kamar 1 Bed
+              </span>
+              <span class="text-xs font-extrabold text-gold-600 bg-gold-50 px-2.5 py-1 rounded-lg border border-gold-200">
+                Rp 19.800.000
+              </span>
+            </div>
+            <h3 class="text-base font-extrabold text-syariah-950 mb-2">Klaim Rawat Inap Anak (Pneumonia)</h3>
+            <p class="text-sm text-slate-600 leading-relaxed italic mb-5">
+              “Anak kami harus dirawat karena pneumonia. Berkat saran Mas Andri ambil plan kamar 1 bed, anak bisa istirahat tenang dan orang tua nyaman menjaga. Klaim lancar tanpa drama.”
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-200/70">
+            <div class="w-10 h-10 rounded-full bg-gold-600 text-white font-bold text-sm flex items-center justify-center shrink-0">NA</div>
+            <div>
+              <p class="text-sm font-bold text-syariah-950">Ibu Nurul Aini</p>
+              <p class="text-xs text-slate-500">Ibu Rumah Tangga • Bandung</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="w-[310px] sm:w-[360px] shrink-0 bg-slate-50/90 hover:bg-white rounded-3xl p-6 border border-syariah-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-syariah-100 text-syariah-800 text-xs font-bold">
+                <i class="fa-solid fa-circle-check text-syariah-600"></i> Amanah Warisan &amp; Wakaf
+              </span>
+              <span class="text-xs font-extrabold text-gold-600 bg-gold-50 px-2.5 py-1 rounded-lg border border-gold-200">
+                Rp 500.000.000
+              </span>
+            </div>
+            <h3 class="text-base font-extrabold text-syariah-950 mb-2">Klaim Santunan Tutup Usia Syariah</h3>
+            <p class="text-sm text-slate-600 leading-relaxed italic mb-5">
+              “Terima kasih banyak Pak Andri yang dengan sabar membantu pengurusan berkas santunan almarhum suami kami hingga cair penuh untuk biaya pendidikan anak-anak dan penyaluran wakaf beliau.”
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-200/70">
+            <div class="w-10 h-10 rounded-full bg-syariah-700 text-white font-bold text-sm flex items-center justify-center shrink-0">DK</div>
+            <div>
+              <p class="text-sm font-bold text-syariah-950">Kel. Alm. Bpk. Dedi Kurniawan</p>
+              <p class="text-xs text-slate-500">Ahli Waris • Garut</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="w-[310px] sm:w-[360px] shrink-0 bg-slate-50/90 hover:bg-white rounded-3xl p-6 border border-syariah-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-syariah-100 text-syariah-800 text-xs font-bold">
+                <i class="fa-solid fa-circle-check text-syariah-600"></i> Cashless Approved
+              </span>
+              <span class="text-xs font-extrabold text-gold-600 bg-gold-50 px-2.5 py-1 rounded-lg border border-gold-200">
+                Rp 64.200.000
+              </span>
+            </div>
+            <h3 class="text-base font-extrabold text-syariah-950 mb-2">Klaim Tindakan Kista &amp; Rawat Inap</h3>
+            <p class="text-sm text-slate-600 leading-relaxed italic mb-5">
+              “Awalnya ragu ikut asuransi, tapi setelah dijelaskan Syariah Concept oleh Pak Andri jadi mantap. Terbukti saat harus tindakan laparoskopi kista, seluruh biaya Rp 64,2 juta ditanggung penuh.”
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-200/70">
+            <div class="w-10 h-10 rounded-full bg-gold-600 text-white font-bold text-sm flex items-center justify-center shrink-0">MK</div>
+            <div>
+              <p class="text-sm font-bold text-syariah-950">Ibu Maya Kartika</p>
+              <p class="text-xs text-slate-500">Karyawan Swasta • Sumedang</p>
+            </div>
+          </div>
+        </article>
       </div>
     </div>
   </section>
@@ -1288,8 +1623,9 @@
                 <div>
                   <label for="client-topic" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Topik Konsultasi *</label>
                   <select id="client-topic" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-syariah-600 focus:ring-2 focus:ring-syariah-500/20 outline-none text-sm bg-white transition-all">
-                    <option value="Proteksi Kesehatan Syariah (Kartu RS Cashless)">Proteksi Kesehatan Syariah (Kartu RS)</option>
-                    <option value="Deposito & Investasi Syariah">Deposito &amp; Investasi Syariah</option>
+                    <option value="Proteksi Kesehatan Syariah (Kartu RS Cashless)">Proteksi Kesehatan Syariah</option>
+                    <option value="Perencanaan Pendidikan Anak Syariah">Perencanaan Pendidikan Anak Syariah</option>
+                    <option value="Investasi Syariah">Investasi Syariah</option>
                     <option value="Proteksi Sakit Kritis & Warisan Syariah">Proteksi Sakit Kritis &amp; Warisan Syariah</option>
                     <option value="Review Polis Lama / Hijrah ke Syariah">Review Polis Lama / Hijrah ke Syariah</option>
                   </select>
@@ -1907,8 +2243,8 @@
         });
       });
 
-      // 3. SCROLL REVEAL ANIMATION
-      const revealElements = document.querySelectorAll('.reveal');
+      // 3. SCROLL REVEAL ANIMATION (ELEGAN UNTUK HP & PC)
+      const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
       
       function triggerScrollReveal() {
         const observer = new IntersectionObserver((entries) => {
@@ -1918,10 +2254,11 @@
               observer.unobserve(entry.target);
             }
           });
-        }, { threshold: 0.12 });
+        }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
 
         revealElements.forEach(el => observer.observe(el));
       }
+      triggerScrollReveal();
 
       // 4. FORMATTER RUPIAH & HELPER WHATSAPP
       function formatRupiah(num) {
@@ -1959,63 +2296,70 @@
         });
       });
 
-      // KALKULATOR 1: SIMULASI DEPOSITO SYARIAH
-      const depAmountInput = document.getElementById('dep-amount');
-      const depAmountLabel = document.getElementById('dep-amount-label');
-      const depRateInput = document.getElementById('dep-rate');
-      const depRateLabel = document.getElementById('dep-rate-label');
-      const depTenorBtns = document.querySelectorAll('.dep-tenor-btn');
+      // KALKULATOR 1: PENDIDIKAN ANAK SYARIAH
+      const eduCostInput = document.getElementById('edu-cost');
+      const eduCostLabel = document.getElementById('edu-cost-label');
+      const eduYearsInput = document.getElementById('edu-years');
+      const eduYearsLabel = document.getElementById('edu-years-label');
+      const eduCurrentFundInput = document.getElementById('edu-current-fund');
+      const eduCurrentFundLabel = document.getElementById('edu-current-fund-label');
+      const eduInflationInput = document.getElementById('edu-inflation');
+      const eduInflationLabel = document.getElementById('edu-inflation-label');
 
-      const depNetProfitEl = document.getElementById('dep-net-profit');
-      const depGrossProfitEl = document.getElementById('dep-gross-profit');
-      const depTotalEndEl = document.getElementById('dep-total-end');
-      const depRecEl = document.getElementById('dep-recommendation');
-      const depWaBtn = document.getElementById('dep-wa-btn');
+      const eduFutureCostEl = document.getElementById('edu-future-cost');
+      const eduGapEl = document.getElementById('edu-gap');
+      const eduMonthlySavingEl = document.getElementById('edu-monthly-saving');
+      const eduRecEl = document.getElementById('edu-recommendation');
+      const eduWaBtn = document.getElementById('edu-wa-btn');
 
-      let selectedDepTenor = 12;
+      function calculatePendidikan() {
+        const presentCost = parseFloat(eduCostInput.value);
+        const years = parseInt(eduYearsInput.value, 10);
+        const currentFund = parseFloat(eduCurrentFundInput.value);
+        const annualRate = parseFloat(eduInflationInput.value) / 100;
+        const monthlyRate = annualRate / 12;
+        const totalMonths = years * 12;
 
-      function calculateDeposito() {
-        const principal = parseFloat(depAmountInput.value);
-        const annualRate = parseFloat(depRateInput.value) / 100;
-        const months = selectedDepTenor;
+        const futureCost = presentCost * Math.pow(1 + annualRate, years);
+        const futureExistingFund = currentFund * Math.pow(1 + annualRate, years);
+        const gap = Math.max(0, futureCost - futureExistingFund);
 
-        const grossProfit = principal * annualRate * (months / 12);
-        const tax = grossProfit * 0.20;
-        const netProfit = grossProfit - tax;
-        const totalEnd = principal + netProfit;
-        const monthlyNet = netProfit / months;
+        const monthlySaving = gap > 0
+          ? (totalMonths > 0
+              ? (monthlyRate > 0 ? gap * (monthlyRate / (Math.pow(1 + monthlyRate, totalMonths) - 1)) : gap / totalMonths)
+              : gap)
+          : 0;
 
-        depAmountLabel.textContent = formatRupiah(principal);
-        depRateLabel.textContent = `${parseFloat(depRateInput.value).toFixed(2)}% p.a.`;
-        depGrossProfitEl.textContent = formatRupiah(grossProfit);
-        depNetProfitEl.textContent = formatRupiah(netProfit);
-        depTotalEndEl.textContent = formatRupiah(totalEnd);
+        eduCostLabel.textContent = formatRupiah(presentCost);
+        eduYearsLabel.textContent = `${years} Tahun`;
+        eduCurrentFundLabel.textContent = formatRupiah(currentFund);
+        eduInflationLabel.textContent = `${parseFloat(eduInflationInput.value)}% / thn`;
 
-        depRecEl.textContent = `Jangan biarkan pokok deposito ${formatRupiah(principal)} Anda tergerus jika sewaktu-waktu terjadi risiko sakit! Cukup sisihkan sebagian kecil bagi hasil bersih Anda (sekitar ${formatRupiah(monthlyNet)}/bln) untuk memiliki Kartu Rumah Sakit Syariah Cashless, sehingga pokok dana Anda tetap utuh 100%.`;
+        eduFutureCostEl.textContent = formatRupiah(futureCost);
+        eduGapEl.textContent = formatRupiah(gap);
+        eduMonthlySavingEl.textContent = `${formatRupiah(monthlySaving)} / bln`;
 
-        return { principal, months, annualRatePercent: depRateInput.value, netProfit, totalEnd };
+        eduRecEl.textContent = `Biaya kuliah ${formatRupiah(presentCost)} saat ini diperkirakan menjadi ${formatRupiah(futureCost)} dalam ${years} tahun. Sisihkan sekitar ${formatRupiah(monthlySaving)}/bulan secara konsisten dan lengkapi dengan perlindungan Payor Benefit Syariah agar dana pendidikan anak tetap aman meski orang tua mengalami risiko sakit kritis atau tutup usia.`;
+
+        return { presentCost, years, currentFund, futureCost, gap, monthlySaving };
       }
 
-      depAmountInput.addEventListener('input', calculateDeposito);
-      depRateInput.addEventListener('input', calculateDeposito);
+      eduCostInput.addEventListener('input', calculatePendidikan);
+      eduYearsInput.addEventListener('input', calculatePendidikan);
+      eduCurrentFundInput.addEventListener('input', calculatePendidikan);
+      eduInflationInput.addEventListener('input', calculatePendidikan);
 
-      depTenorBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          depTenorBtns.forEach(b => {
-            b.classList.remove('active', 'border-syariah-600', 'bg-syariah-700', 'text-white', 'shadow-sm');
-            b.classList.add('border-slate-200', 'bg-slate-50', 'text-slate-700');
-          });
-          btn.classList.add('active', 'border-syariah-600', 'bg-syariah-700', 'text-white', 'shadow-sm');
-          btn.classList.remove('border-slate-200', 'bg-slate-50', 'text-slate-700');
+      eduWaBtn.addEventListener('click', () => {
+        const res = calculatePendidikan();
+        const msg = `Assalamu'alaikum Pak Andri Andriansyah, saya baru menghitung simulasi di *Kalkulator Pendidikan Anak* di website Anda:
 
-          selectedDepTenor = parseInt(btn.getAttribute('data-tenor'), 10);
-          calculateDeposito();
-        });
-      });
+• Biaya Kuliah Saat Ini: ${formatRupiah(res.presentCost)}
+• Jangka Waktu: ${res.years} Tahun
+• Dana Sudah Tersedia: ${formatRupiah(res.currentFund)}
+• Estimasi Biaya Masa Depan: ${formatRupiah(res.futureCost)}
+• Tabungan Rutin Ideal: ${formatRupiah(res.monthlySaving)}/bln
 
-      depWaBtn.addEventListener('click', () => {
-        const res = calculateDeposito();
-        const msg = `Assalamu'alaikum Pak Andri Andriansyah, saya baru mencoba *Kalkulator Deposito Syariah* di website Anda:\n\n• Nominal Dana: ${formatRupiah(res.principal)}\n• Tenor: ${res.months} Bulan\n• Indikasi Bagi Hasil: ${res.annualRatePercent}% p.a.\n• Estimasi Bagi Hasil Bersih: ${formatRupiah(res.netProfit)}\n\nMohon saran strategi diversifikasi & proteksi Syariah Concept terbaik untuk dana saya.`;
+Mohon saran strategi perencanaan pendidikan anak Syariah Concept terbaik untuk keluarga saya.`;
         openWhatsAppWithMessage(msg);
       });
 
@@ -2103,7 +2447,6 @@
       const proExpenseLabel = document.getElementById('pro-expense-label');
       const proDependentsInput = document.getElementById('pro-dependents');
       const proDependentsLabel = document.getElementById('pro-dependents-label');
-      const proPlanBtns = document.querySelectorAll('.pro-plan-btn');
 
       const proEmergencyFundEl = document.getElementById('pro-emergency-fund');
       const proEmergencyMonthsEl = document.getElementById('pro-emergency-months');
@@ -2112,13 +2455,11 @@
       const proRecEl = document.getElementById('pro-recommendation');
       const proWaBtn = document.getElementById('pro-wa-btn');
 
-      let selectedPlanName = '1 Bed (VIP)';
-
       function calculateProteksi() {
         const monthlyExpense = parseFloat(proExpenseInput.value);
         const dependents = parseInt(proDependentsInput.value, 10);
 
-        const emergencyMonths = Math.min(12, 6 + (dependents - 1));
+        const emergencyMonths = dependents > 0 ? Math.min(12, 6 + (dependents - 1)) : 0;
         const emergencyFund = monthlyExpense * emergencyMonths;
         const ciFund = monthlyExpense * 48;
         const idealBudget = monthlyExpense * 0.10;
@@ -2131,37 +2472,149 @@
         proCiFundEl.textContent = formatRupiah(ciFund);
         proBudgetEl.textContent = `${formatRupiah(idealBudget)} / bln`;
 
-        proRecEl.textContent = `Dengan pengeluaran ${formatRupiah(monthlyExpense)}/bulan dan ${dependents} tanggungan, prioritaskan Kartu Kesehatan Syariah Plan ${selectedPlanName} terlebih dahulu agar biaya rumah sakit tidak menyedot Dana Darurat ${formatRupiah(emergencyFund)} Anda. Saya siap buatkan ilustrasi resmi sesuai usia Anda.`;
+        proRecEl.textContent = `Dana Darurat ${formatRupiah(emergencyFund)} (untuk ${dependents} tanggungan) fungsi utamanya adalah menjaga biaya hidup keluarga, dan sering kali TIDAK mencukupi apabila terjadi risiko rawat inap atau tindakan medis besar yang biayanya bisa mencapai ratusan juta rupiah. Sesuaikan pilihan Plan Kesehatan Syariah dengan budget ideal Anda (sekitar ${formatRupiah(idealBudget)}/bulan), karena besaran kontribusi/premi sangat bergantung pada usia dan jenis kelamin (gender) peserta—agar tabungan & dana darurat keluarga tetap aman 100%.`;
 
-        return { monthlyExpense, dependents, selectedPlanName, emergencyFund, ciFund, idealBudget };
+        return { monthlyExpense, dependents, emergencyFund, ciFund, idealBudget };
       }
 
       proExpenseInput.addEventListener('input', calculateProteksi);
       proDependentsInput.addEventListener('input', calculateProteksi);
 
-      proPlanBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          proPlanBtns.forEach(b => {
-            b.classList.remove('active', 'border-syariah-600', 'bg-syariah-700', 'text-white', 'shadow-sm');
-            b.classList.add('border-slate-200', 'bg-slate-50', 'text-slate-700');
-          });
-          btn.classList.add('active', 'border-syariah-600', 'bg-syariah-700', 'text-white', 'shadow-sm');
-          btn.classList.remove('border-slate-200', 'bg-slate-50', 'text-slate-700');
-
-          selectedPlanName = btn.getAttribute('data-plan');
-          calculateProteksi();
-        });
-      });
-
       proWaBtn.addEventListener('click', () => {
         const res = calculateProteksi();
-        const msg = `Assalamu'alaikum Pak Andri Andriansyah, saya baru menghitung kebutuhan di *Kalkulator Dana Darurat & Proteksi Syariah*:\n\n• Pengeluaran Keluarga: ${formatRupiah(res.monthlyExpense)}/bln\n• Jumlah Tanggungan: ${res.dependents} Orang\n• Pilihan Plan Kamar RS: ${res.selectedPlanName}\n• Target Dana Darurat: ${formatRupiah(res.emergencyFund)}\n• Rekomendasi Plafon resiko Kritis: ${formatRupiah(res.ciFund)}\n\nMohon dibuatkan ilustrasi program Syariah Concept yang paling pas untuk keluarga saya.`;
+        const msg = `Assalamu'alaikum Pak Andri Andriansyah, saya baru menghitung kebutuhan di *Kalkulator Dana Darurat & Proteksi Syariah*:\n\n• Pengeluaran Keluarga: ${formatRupiah(res.monthlyExpense)}/bln\n• Jumlah Tanggungan: ${res.dependents} Orang\n• Target Dana Darurat: ${formatRupiah(res.emergencyFund)}\n• Budget Ideal Proteksi (10%): ${formatRupiah(res.idealBudget)}/bln\n• Rekomendasi Plafon Risiko Kritis: ${formatRupiah(res.ciFund)}\n\nMohon dibuatkan ilustrasi Plan Kesehatan Syariah yang sesuai dengan budget & pengeluaran keluarga saya.`;
         openWhatsAppWithMessage(msg);
       });
 
-      calculateDeposito();
+      // RESET TO 0 BUTTONS UNTUK 3 KALKULATOR
+      const eduResetBtn = document.getElementById('edu-reset-btn');
+      if (eduResetBtn) {
+        eduResetBtn.addEventListener('click', () => {
+          eduCostInput.value = 0;
+          eduYearsInput.value = 0;
+          eduCurrentFundInput.value = 0;
+          eduInflationInput.value = 0;
+          calculatePendidikan();
+        });
+      }
+
+      const invResetBtn = document.getElementById('inv-reset-btn');
+      if (invResetBtn) {
+        invResetBtn.addEventListener('click', () => {
+          invInitialInput.value = 0;
+          invMonthlyInput.value = 0;
+          invYearsInput.value = 0;
+          calculateInvestasi();
+        });
+      }
+
+      const proResetBtn = document.getElementById('pro-reset-btn');
+      if (proResetBtn) {
+        proResetBtn.addEventListener('click', () => {
+          proExpenseInput.value = 0;
+          proDependentsInput.value = 0;
+          calculateProteksi();
+        });
+      }
+
+      calculatePendidikan();
       calculateInvestasi();
       calculateProteksi();
+
+      // PILIH WILAYAH HEALTH PLAN -> WARNA HITAM SAAT PILIH ASIA + LINK KE FORM KONSULTASI
+      const regionBtns = document.querySelectorAll('.select-region-btn');
+      const regionCards = document.querySelectorAll('.health-region-card');
+      const clientTopicSelect = document.getElementById('client-topic');
+      const clientNoteTextarea = document.getElementById('client-note');
+
+
+
+      function styleRegionCards(selectedRegion) {
+        regionCards.forEach(card => {
+          const cardRegion = card.getAttribute('data-card-region');
+          const titleEl = card.querySelector('.region-title');
+          const descEl = card.querySelector('.region-desc');
+          const listEl = card.querySelector('.region-list');
+          const badgeEl = card.querySelector('.region-badge');
+          const btnEl = card.querySelector('.select-region-btn');
+          const checkIcons = card.querySelectorAll('.region-list i');
+
+          const isSelected = cardRegion === selectedRegion;
+
+          if (isSelected) {
+            card.style.backgroundColor = '#064e3b';
+            card.style.borderColor = '#34d399';
+            card.style.color = '#ffffff';
+            card.classList.remove('bg-white', 'bg-[#0a0a0a]', 'border-syariah-100', 'border-syariah-500', 'border-syariah-600');
+            card.classList.add('bg-syariah-900', 'text-white', 'border-emerald-400', 'shadow-2xl', 'shadow-syariah-950/35');
+            if (titleEl) { titleEl.style.color = '#ffffff'; titleEl.classList.remove('text-syariah-950'); titleEl.classList.add('text-white'); }
+            if (descEl) { descEl.style.color = '#d1fae5'; descEl.classList.remove('text-slate-600'); descEl.classList.add('text-syariah-100'); }
+            if (listEl) { listEl.style.color = '#ffffff'; listEl.classList.remove('text-slate-700'); listEl.classList.add('text-white'); }
+            checkIcons.forEach(ic => { ic.style.color = '#fbbf24'; ic.classList.remove('text-syariah-600'); ic.classList.add('text-gold-400'); });
+            if (badgeEl) { badgeEl.style.backgroundColor = '#065f46'; badgeEl.style.color = '#fcd34d'; badgeEl.classList.remove('bg-syariah-50', 'bg-syariah-100', 'text-syariah-700', 'text-syariah-800'); badgeEl.classList.add('bg-syariah-800', 'text-gold-300', 'border', 'border-gold-400/30'); }
+            if (btnEl) {
+              btnEl.style.backgroundColor = '#047857';
+              btnEl.style.color = '#ffffff';
+              btnEl.classList.remove('bg-syariah-50', 'hover:bg-syariah-700', 'hover:bg-syariah-800', 'text-syariah-900', 'border-syariah-200', 'bg-emerald-500', 'text-black');
+              btnEl.classList.add('bg-syariah-700', 'hover:bg-syariah-600', 'text-white', 'font-extrabold', 'border', 'border-emerald-400/50', 'shadow-lg');
+              btnEl.textContent = '✓ ' + cardRegion + ' Terpilih';
+            }
+          } else {
+            card.style.backgroundColor = '#ffffff';
+            card.style.borderColor = '';
+            card.style.color = '';
+            card.classList.remove('bg-syariah-900', 'bg-[#0a0a0a]', 'text-white', 'border-emerald-400', 'border-emerald-500', 'border-syariah-600', 'shadow-2xl', 'shadow-syariah-950/35');
+            card.classList.add('bg-white', 'border-syariah-100');
+            if (titleEl) { titleEl.style.color = ''; titleEl.classList.remove('text-white'); titleEl.classList.add('text-syariah-950'); }
+            if (descEl) { descEl.style.color = ''; descEl.classList.remove('text-syariah-100', 'text-slate-300'); descEl.classList.add('text-slate-600'); }
+            if (listEl) { listEl.style.color = ''; listEl.classList.remove('text-white', 'text-slate-200'); listEl.classList.add('text-slate-700'); }
+            checkIcons.forEach(ic => { ic.style.color = ''; ic.classList.remove('text-gold-400', 'text-emerald-400'); ic.classList.add('text-syariah-600'); });
+            if (badgeEl) { badgeEl.style.backgroundColor = ''; badgeEl.style.color = ''; badgeEl.classList.remove('bg-syariah-800', 'bg-white/10', 'text-gold-300', 'text-emerald-300', 'border', 'border-gold-400/30'); badgeEl.classList.add('bg-syariah-50', 'text-syariah-700'); }
+            if (btnEl) {
+              btnEl.style.backgroundColor = '';
+              btnEl.style.color = '';
+              btnEl.classList.remove('bg-syariah-700', 'hover:bg-syariah-600', 'bg-emerald-500', 'hover:bg-emerald-400', 'text-black', 'text-white', 'font-extrabold', 'border-emerald-400/50', 'shadow-lg');
+              btnEl.classList.add('bg-syariah-50', 'hover:bg-syariah-800', 'text-syariah-900', 'hover:text-white', 'border', 'border-syariah-200', 'font-bold');
+              btnEl.textContent = 'Pilih ' + cardRegion;
+            }
+          }
+        });
+      }
+
+      regionBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const regionName = btn.getAttribute('data-region');
+          const topicValue = btn.getAttribute('data-topic');
+
+          styleRegionCards(regionName);
+
+          if (clientTopicSelect && topicValue) {
+            clientTopicSelect.value = topicValue;
+          }
+
+          if (clientNoteTextarea && regionName) {
+            const noteText = `Pilihan Wilayah Health Plan: ${regionName} (1 Bed 1 room / Standard Room).`;
+            if (!clientNoteTextarea.value.includes(noteText)) {
+              clientNoteTextarea.value = clientNoteTextarea.value
+                ? `${clientNoteTextarea.value}\n${noteText}`
+                : noteText;
+            }
+          }
+
+          const formSection = document.getElementById('wa-consultation-form');
+          if (formSection) {
+            formSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        });
+      });
+
+      regionCards.forEach(card => {
+        card.addEventListener('click', () => {
+          const btn = card.querySelector('.select-region-btn');
+          if (btn) btn.click();
+        });
+      });
 
       // FORM KONSULTASI WHATSAPP
       const waForm = document.getElementById('wa-consultation-form');
